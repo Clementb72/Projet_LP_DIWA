@@ -49,3 +49,25 @@ La documentation est consultable ici : [doc/documentation_fr.pdf](./doc/document
 ## Ajout de scripts bash
 
 Vous pouvez ajouter vos scripts bash personnels dans le dossier ./script pour vos besoins de développement propre. Par contre il faut bien penser à attribuer les droits corrects pour l'autorisation de l'exécution du script avec la commande : `chmod u+x ./script/votre_script_perso.sh`. 
+
+
+## Mise en place du mode XDEBUG pour l'environnement DEV
+
+Par défaut, le mode XDEBUG de la pile Docker en environnement de DEV est désactivée. 
+
+Pour activer le mode XDEBUG, voici les manipulations à faire : 
+
+1. Si cela n'a pas déjà été fait, démarrez la pile Docker, attendez que la pile soit complètement démarrée
+2. Commentez la ligne 6 du fichier docker/symfony/docker-php-ext-xdebug.ini
+3. Décommentez la ligne 5 du fichier docker/symfony/docker-php-ext-xdebug.ini
+4. Enregistrez le fichier
+5. Connectez vous au conteneur symfony avec la commande : $ ./connect-symfony-container-dev.sh
+6. Dans le conteneur symfony exécutez la commande suivante : # kill -USR2 1
+7. Sortez du conteneur symfony : # exit
+8. Exécutez la configuration "Listen for Xdebug"
+9. Mettez un point d'arrêt au nivea u du code que vous voulez observer
+10. Côté client web, appelez la page qui correspond au code que vous voulez observer
+11. VSCode s'arrêtera au niveau de la ligne avec un point d'arrêt, à partir de là vous pouvez debogguer avec les outils de VSCode. 
+
+Si vous voulez désactiver le mode XDEBUG côté serveur, il faut procéder de la même manière sauf qu'il faut décommnter la ligne 6 et commenter la ligne 5 du fichier docker/symfony/docker-php-ext-xdebug.ini. 
+
