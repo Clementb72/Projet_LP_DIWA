@@ -1,4 +1,4 @@
-FROM php:7.4-fpm
+FROM php:8.0-fpm
 
 LABEL version="1.0"
 LABEL maintainer="remi.venant@univ-lemans.fr"
@@ -38,7 +38,7 @@ RUN test -z "${http_proxy}" || pear config-set http_proxy ${http_proxy}
 RUN pecl install xdebug \
   && pecl install apcu \
   && pecl install mongodb \
-  && pecl install propro \
+  # && pecl install propro \
   && pecl install raphf \
   && docker-php-ext-enable \
     zip \
@@ -49,7 +49,7 @@ RUN pecl install xdebug \
     xdebug \
     apcu \
     mongodb \
-    propro \
+    # propro \
     raphf
 
 # Installation de Symfony
