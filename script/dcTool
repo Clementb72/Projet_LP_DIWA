@@ -50,7 +50,7 @@ if [ ${typeEnv} == "dev" ]; then
     dcFile="../docker/docker-compose-dev.yml"
   fi
   prjName="diwadev2122"
-  cmd="docker compose"
+  cmd="docker-compose"
 else
   if [ ${typeEnv} == "prod" ]; then
     if [ ! -z "${useProxyEnv}" ] ; then
