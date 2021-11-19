@@ -31,9 +31,9 @@ services:
     restart: always
 
   symfony:
-    #image: fguntz/symfony:1.0
-    build:
-      context: ./symfony
+    image: fguntz/symfony:2.0
+    # build:
+    #   context: ./symfony
     env_file:
       - environment/dev/symfony.env
     volumes:
@@ -73,7 +73,7 @@ services:
     working_dir: /var/www/app
     ports:
       - 127.0.0.1:3000:3000
-    command: bash -c "npm install && npm run start:dev"
+    command: bash -c "npm install -f && npm audit fix -f && npm run start"
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:5.0.2
