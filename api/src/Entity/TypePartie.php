@@ -18,6 +18,7 @@ class TypePartie
     const MODE_MULTI_IMMERSION = "MI";
     const MODE_MULTI_RETROACTION = "MR";
 
+    const TYPES_PARTIE = array(self::MODE_SOLO_CONQUETE, self::MODE_SOLO_IMMERSION,self::MODE_SOLO_RETROACTION, self::MODE_MULTI_CONQUETE, self::MODE_MULTI_IMMERSION, self::MODE_MULTI_RETROACTION);
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
