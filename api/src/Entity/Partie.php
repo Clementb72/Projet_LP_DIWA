@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PartieRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -18,67 +20,61 @@ class Partie
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToOne(targetEntity=TypePartie::class)
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $typePartie;
+    private $type_partie;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $datePartie;
-
-    /**
-     * @ORM\Column(type="array")
-     */
-    private $users = [];
+    private $date_partie;
 
     /**
      * @ORM\Column(type="json")
      */
     private $reponses = [];
 
-    public function getId(): ?int
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class)
+     */
+    private $users;
+
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+    }
+
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getTypePartie(): ?string
+    public function getTypePartie(): TypePartie
     {
-        return $this->typePartie;
+        return $this->type_partie;
     }
 
-    public function setTypePartie(string $typePartie): self
+    public function setTypePartie(TypePartie $type_partie): self
     {
-        $this->typePartie = $typePartie;
+        $this->type_partie = $type_partie;
 
         return $this;
     }
 
-    public function getDatePartie(): ?\DateTimeInterface
+    public function getDatePartie(): \DateTimeInterface
     {
-        return $this->datePartie;
+        return $this->date_partie;
     }
 
-    public function setDatePartie(\DateTimeInterface $datePartie): self
+    public function setDatePartie(\DateTimeInterface $date_partie): self
     {
-        $this->datePartie = $datePartie;
+        $this->date_partie = $date_partie;
 
         return $this;
     }
 
-    public function getUsers(): ?array
-    {
-        return $this->users;
-    }
-
-    public function setUsers(array $users): self
-    {
-        $this->users = $users;
-
-        return $this;
-    }
-
-    public function getReponses(): ?array
+    public function getReponses(): array
     {
         return $this->reponses;
     }
@@ -86,6 +82,30 @@ class Partie
     public function setReponses(array $reponses): self
     {
         $this->reponses = $reponses;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        $this->users->removeElement($user);
 
         return $this;
     }
