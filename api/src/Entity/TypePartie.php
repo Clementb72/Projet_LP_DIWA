@@ -10,6 +10,14 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class TypePartie
 {
+
+    const MODE_SOLO_CONQUETE = "SC";
+    const MODE_SOLO_IMMERSION = "SI";
+    const MODE_SOLO_RETROACTION = "SR";
+    const MODE_MULTI_CONQUETE = "MC";
+    const MODE_MULTI_IMMERSION = "MI";
+    const MODE_MULTI_RETROACTION = "MR";
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
