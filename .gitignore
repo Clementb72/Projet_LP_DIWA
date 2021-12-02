@@ -158,3 +158,9 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/node,linux,macos,windows,webstorm
+
+### API ###
+api/composer.lock
+api/docker-compose.override.yml
+api/docker-compose.yml
+api/symfony.lock
