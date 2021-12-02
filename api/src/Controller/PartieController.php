@@ -12,9 +12,13 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 use App\Repository\PartieRepository;
 use App\Entity\Partie;
 use App\Entity\TypePartie;
+use App\Entity\User;
 use DateTime;
+use Exception;
 use Symfony\Component\Serializer\Exception\NotEncodableValueException;
 use Symfony\Component\Serializer\Exception\NotNormalizableValueException;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 
 
 class PartieController extends AbstractController
@@ -48,45 +52,65 @@ class PartieController extends AbstractController
     public function create(
         EntityManagerInterface $entityManager,
         Request $request,
-        ValidatorInterface $validator,
-        SerializerInterface $serializer
-    ): Response {
+        FlashBagInterface $flashbag
+    ) {
         try {
             $params = $request->request;
             $type_partie = $params->get('type_partie');
-            $date_partie = (new DateTime('now'))->format('Y-m-d H:i:s');
+            $date_partie = new DateTime('now');
             $reponses = $params->get('reponses');
             $users = $params->get('users');
-            // $entry = $serializer->deserialize($content, Partie::class, 'json', [
-            //     'datetime_format' => 'Y-m-d'
-            // ]);
 
-            if (in_array($type_partie, TypePartie::TYPES_PARTIE)) {
-                dump($date_partie, $reponses, $users);
+            $reponses = json_decode($reponses);
+            // $entityManager->persist($partie);
+
+            $partie = new Partie();
+
+            if (!in_array($type_partie, TypePartie::TYPES_PARTIE)) {
+                return new Response("Erreur lors de l'enregistrement de la partie", Response::HTTP_BAD_REQUEST);
             }
-            // $errors = $validator->validate($entry);
-            // if (count($errors) > 0) {
-            //     return $this->json($errors, Response::HTTP_BAD_REQUEST);
-            // }
-            // if ($entry->getContent() == '') {
-            //     throw new NotEncodableValueException('Content empty');
-            // }
 
+            $type_partie = $entityManager->getRepository(TypePartie::class)->findOneBy(["acro" => $type_partie]);
 
-            // $entityManager->persist($entry);
-            // $entityManager->flush();
+            $partie->setTypePartie($type_partie);
+            $partie->setDatePartie($date_partie);
 
-            // $json = $serializer->serialize($entry, 'json', [
-            //     'datetime_format' => 'Y-m-d'
-            // ]);
-            // return new Response($json, Response::HTTP_CREATED, [
-            //     'content-type' => 'application/json'
-            // ]);
+            $json_responses = json_encode($reponses);
 
-            
-            return new Response($date_partie, Response::HTTP_OK, [
-                'content-type' => 'application/json'
-            ]);
+            $json = json_decode($json_responses, true);
+
+            $minOne = true;
+
+            foreach (json_decode($users, true) as $user_id) {
+
+                $user = $entityManager->getRepository(User::class)->findOneBy(["id" => $user_id]);
+                
+                if (!is_null($user)) {
+                    try {
+                        for ($i = 1; $i < 2; $i++) {
+                            defined($reponses->{$user_id}->{'question' . $i});
+                        }
+                        $partie->addUser($user);
+                    } catch (Exception $e) {
+                        $flashbag->add('error', "Erreur : Une question est manquante");
+                    }
+                } else {
+                    $minOne = false;
+                }
+            }
+            dump($partie->getUsers());
+            $partie->setReponses($json);
+
+            try {
+                if ($minOne) {
+                    $entityManager->persist($partie);
+                    $entityManager->flush();
+                    return new Response('OK', Response::HTTP_OK);
+                } else
+                    return new Response('Erreur', Response::HTTP_BAD_REQUEST);
+            } catch (Exception $e) {
+                $flashbag->add('error', $e);
+            }
         } catch (NotEncodableValueException | NotNormalizableValueException $e) {
             return $this->json([
                 'errorType' => get_class($e),
