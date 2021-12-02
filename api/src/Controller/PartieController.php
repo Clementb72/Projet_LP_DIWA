@@ -62,10 +62,8 @@ class PartieController extends AbstractController
             // ]);
 
             if (in_array($type_partie, TypePartie::TYPES_PARTIE)) {
-                dump($date_partie);
+                dump($date_partie, $reponses, $users);
             }
-
-            dump($reponses, $users);
             // $errors = $validator->validate($entry);
             // if (count($errors) > 0) {
             //     return $this->json($errors, Response::HTTP_BAD_REQUEST);
@@ -86,7 +84,7 @@ class PartieController extends AbstractController
             // ]);
 
             
-            return new Response($content, Response::HTTP_OK, [
+            return new Response($date_partie, Response::HTTP_OK, [
                 'content-type' => 'application/json'
             ]);
         } catch (NotEncodableValueException | NotNormalizableValueException $e) {
