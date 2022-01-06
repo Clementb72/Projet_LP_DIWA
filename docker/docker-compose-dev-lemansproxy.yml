@@ -93,7 +93,7 @@ services:
         aliases:
           - phpmyadmin
     ports:
-      - 127.0.0.1:8888:80
+      - 127.0.0.1:8889:80
     restart: always
 
 volumes:
