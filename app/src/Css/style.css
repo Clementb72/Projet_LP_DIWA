@@ -1,0 +1,115 @@
+@import '~antd/dist/antd.css';
+
+.bg-yellow{
+    background-color: #FECA19;
+}
+
+.bg-blue{
+    background-color: #1A5BA7;
+}
+
+.bg-dark-blue{
+    background-color: #002E52;
+}
+
+.bg-white-transparent{
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.border-radius-25{
+    border-radius: 25px;
+}
+
+.container{
+    padding: 7vw; 
+}
+
+.stepBar{
+    padding: 20px;
+}
+
+.container-2{
+    margin-top: 40px;
+    overflow: hidden;
+}
+
+
+.container-question{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;  
+    margin: 15px auto;
+}
+
+.circle{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.question{
+    margin-bottom: 0;
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+}
+
+.container-main{
+    display: flex;   
+    justify-content: space-around;
+}
+
+.containter-reponse-objectif{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 80%;
+}
+
+.reponse, .adjectif{
+    height: 40%;
+}
+
+.reponse p, .adjectif p{
+    text-align: left;
+    margin-left: 30px;
+    color: white;
+    filter: drop-shadow(0 0 0.75rem white);
+}
+
+.reponse p::after, .adjectif p::after{
+    position: absolute;
+    content: '';
+    bottom: -4px; 
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background-color: rgb(255, 255, 255);
+}
+
+.input-answer{
+    border: none;
+    width: 80%;
+    background-color: transparent;
+}
+
+.imgFuse{
+    width: 10%;
+}
+
+.container-arrow{
+    display: flex;
+    justify-content: center;
+    font-size: 40px;
+    color: white;;
+}
+
+.arrow-left{
+    margin-right: 50px;
+    transform: rotate(-180deg);
+    cursor: pointer;
+}
+
+.arrow-right{
+    cursor: pointer;
+}
