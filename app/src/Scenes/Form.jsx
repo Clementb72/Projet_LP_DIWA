@@ -60,8 +60,20 @@ function Form() {
 
     const input = document.querySelector('.input-answer')
     const targetInput = () => {
-      input.click()
+        input.click()
     }
+
+    var i = 0;
+    var id = '{"1":'
+    var string = '{';
+    for (const a in answer) {
+        i++
+        string += '"question"' + i + '" :"' + reponse[a].reponse + '",';
+    }
+    string += '"}}"'
+
+    console.log(id + string);
+
 
     return (
         // <Layout>    
@@ -70,7 +82,7 @@ function Form() {
             <div className="bg-white-transparent border-radius-25 container-2">
                 <div className="container-question">
                     <div className="circle bg-yellow"></div>
-                    <p className="question">{question[nbQuestion]}</p>                    
+                    <p className="question">{question[nbQuestion]}</p>
                 </div>
                 <div className="container-main">
                     <div className="containter-reponse-objectif">
