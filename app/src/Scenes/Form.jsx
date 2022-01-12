@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import fuse from '../Assets/images/fuse1.png'
 import StepBar from "../components/StepBar";
+import axios, { Axios } from 'axios';
 import Layout from "../components/Layout"
 import '../Css/style.css'
 
@@ -64,7 +65,20 @@ function Form() {
             var json = string.replace(/:\s*[^"0-9.]*([0-9.]+)/g, ':"$1"');
             console.log(json);
             json = JSON.parse(json);
-            console.log(json);
+
+            axios({
+                method: 'post',
+                url: 'http://127.0.0.1:8080/api/partie',
+                data: {
+                  type_partie: 'SC',
+                  reponses: json,
+                  users: [1]
+                }
+            }).then(response => {
+                console.log(response)
+            }).catch(error =>
+                console.log(error)
+            )
         }
     }
 
