@@ -80,14 +80,13 @@ class PartieController extends AbstractController
             $json = json_decode($json_responses, true);
 
             $minOne = true;
-
             foreach (json_decode($users, true) as $user_id) {
 
                 $user = $entityManager->getRepository(User::class)->findOneBy(["id" => $user_id]);
                 
                 if (!is_null($user)) {
                     try {
-                        for ($i = 1; $i < 2; $i++) {
+                        for ($i = 1; $i < 10; $i++) {
                             defined($reponses->{$user_id}->{'question' . $i});
                         }
                         $partie->addUser($user);
@@ -98,11 +97,12 @@ class PartieController extends AbstractController
                     $minOne = false;
                 }
             }
-            dump($partie->getUsers());
+            
             $partie->setReponses($json);
 
             try {
                 if ($minOne) {
+                    dd($partie);
                     $entityManager->persist($partie);
                     $entityManager->flush();
                     return new Response('OK', Response::HTTP_OK);

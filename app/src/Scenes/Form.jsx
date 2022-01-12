@@ -46,8 +46,26 @@ function Form() {
     }
 
     const nextPage = () => {
-        if (question.length > nbQuestion + 1)
+        if (question.length > nbQuestion + 1) {
             setNbQuestion(nbQuestion + 1)
+        } else {
+            var i = 0;
+            var id = '{"1":'
+            var string = '{';
+            for (const a in answer) {
+                i++
+                string += '"question' + i + '":"' + answer[a].reponse + '",';
+            }
+
+            var virgule = string.lastIndexOf(',');
+            string = string.substring(0, virgule)
+            string += '}}'
+            string = id + string
+            var json = string.replace(/:\s*[^"0-9.]*([0-9.]+)/g, ':"$1"');
+            console.log(json);
+            json = JSON.parse(json);
+            console.log(json);
+        }
     }
 
     const changeAnswer = (value) => {
@@ -63,16 +81,6 @@ function Form() {
         input.click()
     }
 
-    var i = 0;
-    var id = '{"1":'
-    var string = '{';
-    for (const a in answer) {
-        i++
-        string += '"question"' + i + '" :"' + reponse[a].reponse + '",';
-    }
-    string += '"}}"'
-
-    console.log(id + string);
 
 
     return (
