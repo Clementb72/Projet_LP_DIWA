@@ -66,6 +66,8 @@ function Form() {
             console.log(json);
             json = JSON.parse(json);
 
+            axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+            axios.defaults.headers.post['Access-Control-Request-Method'] = 'POST';
             axios({
                 method: 'post',
                 url: 'http://127.0.0.1:8080/api/partie',
@@ -77,7 +79,7 @@ function Form() {
             }).then(response => {
                 console.log(response)
             }).catch(error =>
-                console.log(error)
+                console.log("Erreur =====> ", error)
             )
         }
     }
