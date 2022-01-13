@@ -64,71 +64,66 @@ function Form() {
             string = id + string
             var json = string.replace(/:\s*[^"0-9.]*([0-9.]+)/g, ':"$1"');
             console.log(json);
-            json = JSON.parse(json);
 
-            axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
-            axios.defaults.headers.post['Access-Control-Request-Method'] = 'POST';
-            axios({
-                method: 'post',
-                url: 'http://127.0.0.1:8080/api/partie',
-                data: {
-                  type_partie: 'SC',
-                  reponses: json,
-                  users: [1]
-                }
-            }).then(response => {
-                console.log(response)
-            }).catch(error =>
-                console.log("Erreur =====> ", error)
-            )
+            axios.post('http://127.0.0.1:8080/api/partie', {
+                type_partie: 'SC',
+                reponses: json,
+                users: [1]   
+            }, {headers:{"Content-Type" : "application/json"}}).then(function(response){
+                console.log("OK ==> ", response)
+            }).catch(function(error){
+                console.log(error.response.data)
+            })
+
+            // axios.get('http://127.0.0.1:8080/api/parties').then(e => console.log(e));
         }
     }
 
-    const changeAnswer = (value) => {
-        const answerTmp = [...answer]
-        answerTmp[nbQuestion] = {
-            reponse: value
+        const changeAnswer = (value) => {
+            const answerTmp = [...answer]
+            answerTmp[nbQuestion] = {
+                reponse: value
+            }
+            setAnswer(answerTmp)
         }
-        setAnswer(answerTmp)
-    }
 
-    const input = document.querySelector('.input-answer')
-    const targetInput = () => {
-        input.click()
-    }
+        const input = document.querySelector('.input-answer')
+        const targetInput = () => {
+            input.click()
+        }
 
 
 
-    return (
-        // <Layout>    
-        <div className="container bg-dark-blue">
-            <div className="bg-white-transparent border-radius-25 stepBar"><StepBar /></div>
-            <div className="bg-white-transparent border-radius-25 container-2">
-                <div className="container-question">
-                    <div className="circle bg-yellow"></div>
-                    <p className="question">{question[nbQuestion]}</p>
-                </div>
-                <div className="container-main">
-                    <div className="containter-reponse-objectif">
-                        <div onClick={targetInput} className="reponse bg-white-transparent border-radius-25">
-                            <p>Ma réponse</p>
-                            <input className="input-answer" placeholder="Entrer votre réponse" type="text" value={answer[nbQuestion].reponse} onChange={(e) => changeAnswer(e.target.value)}></input>
-                        </div>
-                        <div className="adjectif bg-white-transparent border-radius-25">
-                            <p>Adjectifs</p>
-                        </div>
+        return (
+            // <Layout>    
+            <div className="container bg-dark-blue">
+                <div className="bg-white-transparent border-radius-25 stepBar"><StepBar /></div>
+                <div className="bg-white-transparent border-radius-25 container-2">
+                    <div className="container-question">
+                        <div className="circle bg-yellow"></div>
+                        <p className="question">{question[nbQuestion]}</p>
                     </div>
-                    <img className="imgFuse" src={fuse} alt="fuse"></img>
+                    <div className="container-main">
+                        <div className="containter-reponse-objectif">
+                            <div onClick={targetInput} className="reponse bg-white-transparent border-radius-25">
+                                <p>Ma réponse</p>
+                                <input className="input-answer" placeholder="Entrer votre réponse" type="text" value={answer[nbQuestion].reponse} onChange={(e) => changeAnswer(e.target.value)}></input>
+                            </div>
+                            <div className="adjectif bg-white-transparent border-radius-25">
+                                <p>Adjectifs</p>
+                            </div>
+                        </div>
+                        <img className="imgFuse" src={fuse} alt="fuse"></img>
+                    </div>
+                </div>
+                <div className="container-arrow">
+                    <div onClick={previousPage} className="arrow-left">&#10148;</div>
+                    <div onClick={nextPage} className="arrow-right">&#10148;</div>
                 </div>
             </div>
-            <div className="container-arrow">
-                <div onClick={previousPage} className="arrow-left">&#10148;</div>
-                <div onClick={nextPage} className="arrow-right">&#10148;</div>
-            </div>
-        </div>
 
-        //  </Layout>
-    )
-}
+            //  </Layout>
+        )
+    }
 
-export default Form
+    export default Form

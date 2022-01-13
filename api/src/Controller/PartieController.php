@@ -67,7 +67,7 @@ class PartieController extends AbstractController
             $partie = new Partie();
 
             if (!in_array($type_partie, TypePartie::TYPES_PARTIE)) {
-                return new Response("Erreur lors de l'enregistrement de la partie", Response::HTTP_BAD_REQUEST);
+                return new Response("Erreur lors de l'enregistrement de la partie ".$type_partie.", ".$reponses.",".$users, Response::HTTP_BAD_REQUEST);
             }
 
             $type_partie = $entityManager->getRepository(TypePartie::class)->findOneBy(["acro" => $type_partie]);
