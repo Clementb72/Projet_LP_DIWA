@@ -60,14 +60,24 @@ class PartieController extends AbstractController
             $date_partie = new DateTime('now');
             $reponses = $params->get('reponses');
             $users = $params->get('users');
+            $tab_users = [];
+
+            if(gettype($users) == "string"){
+                array_push($tab_users, $users);
+            }
+            else{
+                return new Response("Erreur lors de l'enregistrement des utilisateurs", Response::HTTP_BAD_REQUEST);
+            }
 
             $reponses = json_decode($reponses);
             // $entityManager->persist($partie);
 
+
+
             $partie = new Partie();
 
             if (!in_array($type_partie, TypePartie::TYPES_PARTIE)) {
-                return new Response("Erreur lors de l'enregistrement de la partie ".$type_partie.", ".$reponses.",".$users, Response::HTTP_BAD_REQUEST);
+                return new Response("Erreur lors de l'enregistrement de la partie", Response::HTTP_BAD_REQUEST);
             }
 
             $type_partie = $entityManager->getRepository(TypePartie::class)->findOneBy(["acro" => $type_partie]);
@@ -82,7 +92,7 @@ class PartieController extends AbstractController
             $minOne = true;
 
 
-            foreach (json_decode($users, true) as $user_id) {
+            foreach ($tab_users as $user_id) {
                 $user = $entityManager->getRepository(User::class)->findOneBy(["id" => $user_id]);
                 if (!is_null($user)) {
                     try {

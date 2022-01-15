@@ -62,15 +62,15 @@ function Form() {
             string = string.substring(0, virgule)
             string += '}}'
             string = id + string
-            var json = string.replace(/:\s*[^"0-9.]*([0-9.]+)/g, ':"$1"');
-            console.log(json);
+            var reponseJson = string.replace(/:\s*[^"0-9.]*([0-9.]+)/g, ':"$1"');
 
-            axios.post('http://127.0.0.1:8080/api/partie', {
-                type_partie: 'SC',
-                reponses: json,
-                users: [1]   
-            }, {headers:{"Content-Type" : "application/json"}}).then(function(response){
-                console.log("OK ==> ", response)
+            let formData = new FormData();
+            formData.append('type_partie', 'SC');
+            formData.append('reponses', reponseJson);
+            formData.append('users', [1,2]);
+
+            axios.post('http://127.0.0.1:8080/api/partie', formData).then(function(response){
+                console.log(response.data)
             }).catch(function(error){
                 console.log(error.response.data)
             })
