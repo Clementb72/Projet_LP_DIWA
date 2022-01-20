@@ -60,9 +60,19 @@ class PartieController extends AbstractController
             $date_partie = new DateTime('now');
             $reponses = $params->get('reponses');
             $users = $params->get('users');
+            $tab_users = [];
+
+            if(gettype($users) == "string"){
+                array_push($tab_users, $users);
+            }
+            else{
+                return new Response("Erreur lors de l'enregistrement des utilisateurs", Response::HTTP_BAD_REQUEST);
+            }
 
             $reponses = json_decode($reponses);
             // $entityManager->persist($partie);
+
+
 
             $partie = new Partie();
 
@@ -81,13 +91,12 @@ class PartieController extends AbstractController
 
             $minOne = true;
 
-            foreach (json_decode($users, true) as $user_id) {
 
+            foreach ($tab_users as $user_id) {
                 $user = $entityManager->getRepository(User::class)->findOneBy(["id" => $user_id]);
-                
                 if (!is_null($user)) {
                     try {
-                        for ($i = 1; $i < 2; $i++) {
+                        for ($i = 1; $i < 10; $i++) {
                             defined($reponses->{$user_id}->{'question' . $i});
                         }
                         $partie->addUser($user);
@@ -98,11 +107,11 @@ class PartieController extends AbstractController
                     $minOne = false;
                 }
             }
-            dump($partie->getUsers());
+            
             $partie->setReponses($json);
 
             try {
-                if ($minOne) {
+                if ($minOne) {        
                     $entityManager->persist($partie);
                     $entityManager->flush();
                     return new Response('OK', Response::HTTP_OK);
