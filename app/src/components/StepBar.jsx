@@ -1,14 +1,21 @@
 import React from "react";
 import { Steps } from 'antd';
+import wystar from '../Assets/images/wystar.png'
+
 const { Step } = Steps;
 
-function StepBar() {
+function StepBar({current}) {
     return (
-        <Steps current={1}>
+        <Steps current={current}>
             <Step title="" />
             <Step title="" />
             <Step title="" />
             <Step title="" />
+            <Step title="" />
+            <Step title="" />
+            <Step title="" />
+            <Step title="" />
+            <Step title="" icon={<img style={{width: "50%"}}  src={wystar}/>}/>
         </Steps>
     )
 }
