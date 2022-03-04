@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import fuse from '../Assets/images/fuse1.png'
 import rocket from '../Assets/images/space-rocket-launch.png'
 import StepBar from "../components/StepBar";
+import axios, { Axios } from 'axios';
 import Layout from "../components/Layout"
 import InputTag from "../components/InputTag"
 import { Radio } from 'antd';
@@ -59,18 +60,38 @@ function Form() {
     }
 
     const nextPage = () => {
-        if (question.length > nbQuestion + 1)
+        if (question.length > nbQuestion + 1) {
             setNbQuestion(nbQuestion + 1)
-    }
+        } else {
+            var i = 0;
+            var id = '{"1":'
+            var string = '{';
+            for (const a in answer) {
+                i++
+                string += '"question' + i + '":"' + answer[a].reponse + '",';
+            }
 
-    const changeAnswer = (value) => {
-        const answerTmp = [...answer]
-        answerTmp[nbQuestion] = {
-            reponse: value
+            var virgule = string.lastIndexOf(',');
+            string = string.substring(0, virgule)
+            string += '}}'
+            string = id + string
+            var reponseJson = string.replace(/:\s*[^"0-9.]*([0-9.]+)/g, ':"$1"');
+
+            let formData = new FormData();
+            formData.append('type_partie', 'SC');
+            formData.append('reponses', reponseJson);
+            formData.append('users', [1,2]);
+
+            axios.post('http://127.0.0.1:8080/api/partie', formData).then(function(response){
+                console.log(response.data)
+            }).catch(function(error){
+                console.log(error.response.data)
+            })
+
+            // axios.get('http://127.0.0.1:8080/api/parties').then(e => console.log(e));
         }
-        setAnswer(answerTmp)
     }
-
+    
     const changeSatisfaction = (value) => {
         const answerTmp = [...answer]
         answerTmp[nbQuestion] = {
@@ -110,8 +131,12 @@ function Form() {
                                 <Radio.Button value="+++">+++</Radio.Button>
                             </Radio.Group>
                         </div>
+                        <img className="imgFuse" src={fuse} alt="fuse"></img>
                     </div>
-                    <img className="imgFuse" src={fuse} alt="fuse"></img>
+                </div>
+                <div className="container-arrow">
+                    <div onClick={previousPage} className="arrow-left">&#10148;</div>
+                    <div onClick={nextPage} className="arrow-right">&#10148;</div>
                 </div>
             </div>
             <div className="container-arrow">             
@@ -119,9 +144,8 @@ function Form() {
                 <img onClick={nextPage} className="arrow-right" src={rocket} alt="rocket"></img>              
             </div>
         </div>
+            //  </Layout>
+        )
+    }
 
-        //  </Layout>
-    )
-}
-
-export default Form
+    export default Form
