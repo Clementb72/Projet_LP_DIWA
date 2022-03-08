@@ -1,15 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
-import HomeForm from './Scenes/HomeForm';
-import Form from './Scenes/Form';
-import Navigation from './Navigation';
+import React from 'react';
+import Form from './Scenes/Form.jsx';
+
+import '../public/style/App.scss';
 
 function App() {
-  return (
-    <div className="App">
-        <Form></Form>   
-    </div>
-  );
+    return (
+        <div className="App">
+            <Form></Form>   
+        </div>
+    );
 }
 
 export default App;

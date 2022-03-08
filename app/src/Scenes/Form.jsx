@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import fuse from '../Assets/images/fuse1.png'
-import rocket from '../Assets/images/space-rocket-launch.png'
-import StepBar from "../components/StepBar";
-import axios, { Axios } from 'axios';
-import Layout from "../components/Layout"
-import InputTag from "../components/InputTag"
+import fuse from '../../public/Assets/images/fuse1.png';
+import rocket from '../../public/Assets/images/space-rocket-launch.png';
+import StepBar from "../components/StepBar.jsx";
+import axios from 'axios';
+import InputTag from "../components/InputTag.jsx";
 import { Radio } from 'antd';
-import '../Css/style.css'
+
+import '../../public/style/style.scss';
 
 const question = [
     "Qu’est ce qui est stimulant pour vous pour atteindre l’objectif ?",
@@ -113,7 +113,7 @@ function Form() {
                     <div className="containter-reponse-objectif">
                         <div className="reponse">
                             <label htmlFor="answer">Ma réponse</label>
-                            <input name="answer" className="input-answer bg-white-transparent" placeholder="Entrer votre réponse" type="text" value={answer[nbQuestion].reponse} onChange={(e) => changeAnswer(e.target.value)}></input>
+                            <input name="answer" className="input-answer bg-white-transparent" placeholder="Entrer votre réponse" type="text" value={answer[nbQuestion].reponse} onChange={(e) => changeSatisfaction(e.target.value)}></input>
                         </div>
                         <div className="adjectif">
                             <p>Adjectifs</p>
@@ -145,7 +145,7 @@ function Form() {
             </div>
         </div>
             //  </Layout>
-        )
-    }
+    )
+}
 
-    export default Form
+export default Form
