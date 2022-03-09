@@ -15,7 +15,7 @@
 }
 
 .bg-white-transparent {
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 .border-radius-25 {
@@ -170,3 +170,66 @@
 .arrow-right {
     cursor: pointer;
 }
+
+/* CONNECTION FORM */
+
+.formLogin {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+}
+
+.login {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, .2);
+    border-radius: 20px;
+    align-items: center;
+    box-shadow: 0px 0px 10px -1px rgb(255 255 255 / 50%);
+}
+
+.login .btn {
+    width: fit-content;
+    padding: 10px 20px;
+    border: none;
+    background-color: rgba(255, 255, 255, .2);
+    color: white;
+    border-radius: 50px;
+    margin: 15px 0;
+    transition: all .5s ease-in-out;
+}
+
+.login .btn:hover {
+    background-color: rgba(255, 255, 255, .4);
+    cursor: pointer;
+}
+
+.login .bg-white-transparent {
+    background-color: rgba(255, 255, 255, .2);
+    padding: 25px;
+    border-radius: 20px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.login .bg-white-transparent input{
+    background-color: rgba(255, 255, 255, .2);
+    border: none;
+    padding: 5px 10px;
+    color: white;
+    border-radius: 50px;
+}
+
+.login .bg-white-transparent input::placeholder {
+    color: white;
+}
+
+/* CONNECTION FORM */ 

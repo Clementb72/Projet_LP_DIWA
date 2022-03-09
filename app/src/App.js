@@ -1,12 +1,13 @@
 import React from 'react';
-import Form from './Scenes/Form.jsx';
+import LoginForm from './Scenes/LoginForm.jsx';
 
 import '../public/style/App.scss';
+import '../public/style/style.scss';
 
 function App() {
     return (
         <div className="App">
-            <Form></Form>   
+            <LoginForm></LoginForm>
         </div>
     );
 }
