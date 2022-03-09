@@ -1,12 +1,11 @@
 import React from "react";
-import "./ressources.css";
-import ressources_json from "../json/cards/ressources.json";
-import besoins_json from "../json/cards/besoins.json";
-import affects_json from "../json/cards/affects.json";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import ressources_json from "../../public/Assets/json/cards/ressources.json";
+import besoins_json from "../../public/Assets/json/cards/besoins.json";
+import affects_json from "../../public/Assets/json/cards/affects.json";
+
+import "../../public/style/components/ressources.scss";
 
 // object avec 3 tableaux
-
 function Ressources({ listTags, setListTags, indexRessource = "ressources" }) {
   const cartes_jsons = {"ressources" : ressources_json, "besoins":besoins_json, "affects":affects_json};
   
