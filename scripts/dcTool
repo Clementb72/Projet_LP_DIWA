@@ -1,4 +1,9 @@
 #!/bin/bash
+
+prjName="wys"
+
+cmd="docker-compose"
+
 print_usage(){
   echo "Usage: $0 <dev | prod> [--lemans-proxy] [--help] [ARGS...]"
 }
@@ -49,8 +54,8 @@ if [ ${typeEnv} == "dev" ]; then
   else
     dcFile="../docker/docker-compose-dev.yml"
   fi
-  prjName="diwadev2122"
-  cmd="docker-compose"
+  # prjName="diwadev2122"
+  # cmd="docker-compose"
 else
   if [ ${typeEnv} == "prod" ]; then
     if [ ! -z "${useProxyEnv}" ] ; then
@@ -58,8 +63,8 @@ else
     else
       dcFile="../docker/docker-compose-prod.yml"
     fi
-    prjName="diwaprod2122"
-    cmd="docker-compose"
+    # prjName="diwaprod2122"
+    # cmd="docker-compose"
   fi
 fi
 
