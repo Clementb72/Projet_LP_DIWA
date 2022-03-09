@@ -1,0 +1,65 @@
+body {
+  background-color: #002e52;
+}
+
+.container {
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  
+}
+
+.qualite,.valeurs,.habilites {
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  width:30%;  
+  text-align: center;
+  padding-right:0;
+}
+
+.container_ressources{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.color-red{
+  color:rgb(255, 0, 0);
+}
+
+.color-yellow{
+  color:rgb(255, 238, 0);
+}
+
+.color-blue{
+  color:blue;
+}
+
+.big-size{
+  font-size: 1.5em;
+}
+
+.checked{
+  text-decoration: underline;
+  text-decoration-color: rgb(255, 0, 157);
+  
+}
+
+.ressources-white{
+  color: white;
+}
+
+.centered {
+  height: 100vh; /* Magic here */
+  display:flex;
+  flex:column;
+  justify-content: center;
+  align-items: center;
+}

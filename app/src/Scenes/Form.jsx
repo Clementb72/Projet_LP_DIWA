@@ -1,26 +1,19 @@
 import React, { useState } from "react";
+import axios from 'axios';
+import { Radio } from 'antd';
+import StepBar from "../components/StepBar.jsx";
+import ReactTagInput from "@pathofdev/react-tag-input";
+import Ressources from '../components/Ressources.jsx';
+
 import fuse from '../../public/Assets/images/fuse1.png';
 import rocket from '../../public/Assets/images/space-rocket-launch.png';
-import StepBar from "../components/StepBar.jsx";
-import axios from 'axios';
-import InputTag from "../components/InputTag.jsx";
-import { Radio } from 'antd';
+
+import questions from '../../public/Assets/json/translation/questions.json';
 
 import '../../public/style/style.scss';
+import { Button, Modal } from "react-bootstrap";
 
-const question = [
-    "Qu’est ce qui est stimulant pour vous pour atteindre l’objectif ?",
-    "Quelles qualités vous seront nécessaires pour l’atteinte de l’objectif ?",
-    "Au fond de vous, qu’est-ce que vous souhaiter vraiment à travers cet objectif ?",
-    "Qu’est-ce que vous avez envie de faire pour le projet ?",
-    "Quels moyens techniques, humains pouvez vous mobiliser pour atteindre l’objectif ?",
-    "Concernant les indicateurs, à quoi savez vous que vous avancer vers vos objectifs ?",
-    "Quel est le principal obstacle qui vous empêche d’avancer ?",
-    "Face à cet obstacle, quel danger percevez vous ? et dans quelle émotion ça vous mets ? ",
-    "Quelle est la réaction positive pour surmonter l’obstacle ?"
-]
-
-function Form() {
+function Form({ mode = "present" }) {
 
     const [answer, setAnswer] = useState([{
         reponse: "",
@@ -52,7 +45,21 @@ function Form() {
     },
     ]);
     
-    const [nbQuestion, setNbQuestion] = useState(0)
+    const [nbQuestion, setNbQuestion] = useState(0);
+
+    const [listTags, setListTags] = useState([]);
+
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    const [showBesoins, setShowBesoins] = useState(false);
+    const handleCloseBesoins = () => setShowBesoins(false);
+    const handleShowBesoins = () => setShowBesoins(true);
+
+    const [showAffects, setShowAffects] = useState(false);
+    const handleCloseAffects = () => setShowAffects(false);
+    const handleShowAffects = () => setShowAffects(true);
 
     const previousPage = () => {
         if (nbQuestion > 0)
@@ -60,7 +67,7 @@ function Form() {
     }
 
     const nextPage = () => {
-        if (question.length > nbQuestion + 1) {
+        if (questions[mode].length > nbQuestion + 1) {
             setNbQuestion(nbQuestion + 1)
         } else {
             var i = 0;
@@ -107,7 +114,7 @@ function Form() {
             <div className="bg-white-transparent border-radius-25 container-2">
                 <div className="container-question bg-white-transparent">
                     <div className="circle bg-yellow"></div>
-                    <p className="question">{question[nbQuestion]}</p>
+                    <p className="question">{questions[mode][nbQuestion]}</p>
                 </div>
                 <div className="container-main">
                     <div className="containter-reponse-objectif">
@@ -117,7 +124,70 @@ function Form() {
                         </div>
                         <div className="adjectif">
                             <p>Adjectifs</p>
-                            <div className="input-tag bg-white-transparent">  <InputTag></InputTag> </div>
+                            <div className="input-tag bg-white-transparent">
+                                <ReactTagInput tags={listTags} removeOnBackspace={true} onChange={(newTags) => {
+                                    if (!listTags.includes([...newTags].pop()) || listTags.length > newTags.length) {
+                                        setListTags(newTags);
+                                    }
+                                }}/>
+                            </div>
+                            <Button variant="primary" onClick={handleShow}>
+                                Carte Ressources
+                            </Button>
+                            <Button variant="primary" onClick={handleShowBesoins}>
+                                Carte Besoins
+                            </Button> 
+                            <Button variant="primary" onClick={handleShowAffects}>
+                                Carte Affects
+                            </Button>
+                            <Modal size='lg' show={show} onHide={handleClose}>
+                                <Modal.Header closeButton>
+                                    <Modal.Title>Voici toutes les ressources disponibles</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>
+                                    <Ressources setListTags={setListTags} listTags={listTags} indexRessource={"ressources"}/>
+                                </Modal.Body>
+                                <Modal.Footer>
+                                    <Button variant="secondary" onClick={handleClose}>
+                                        Fermer
+                                    </Button>
+                                    <Button variant="primary" onClick={handleClose}>
+                                        Enregistrer
+                                    </Button>
+                                </Modal.Footer>
+                            </Modal>
+                            <Modal size='lg' show={showBesoins} onHide={handleCloseBesoins}>
+                                <Modal.Header closeButton>
+                                    <Modal.Title>Voici toutes les ressources disponibles</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>
+                                    <Ressources setListTags={setListTags} listTags={listTags} indexRessource={"besoins"}/>
+                                </Modal.Body>
+                                <Modal.Footer>
+                                    <Button variant="secondary" onClick={handleCloseBesoins}>
+                                        Fermer
+                                    </Button>
+                                    <Button variant="primary" onClick={handleCloseBesoins}>
+                                        Enregistrer
+                                    </Button>
+                                </Modal.Footer>
+                            </Modal>
+                            <Modal size='lg' show={showAffects} onHide={handleCloseAffects}>
+                                <Modal.Header closeButton>
+                                    <Modal.Title>Voici toutes les ressources disponibles</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>
+                                    <Ressources setListTags={setListTags} listTags={listTags} indexRessource={"affects"}/>
+                                </Modal.Body>
+                                <Modal.Footer>
+                                    <Button variant="secondary" onClick={handleCloseAffects}>
+                                        Fermer
+                                    </Button>
+                                    <Button variant="primary" onClick={handleCloseAffects}>
+                                        Enregistrer
+                                    </Button>
+                                </Modal.Footer>
+                            </Modal>
                         </div>
                         <div className="satisfaction">
                             <p>Satisfaction</p>
