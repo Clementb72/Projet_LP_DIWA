@@ -1,9 +1,9 @@
-version: '3.4'
-# author: Rémi Venant, <remi.venant@univ-lemans.fr>
+version: '3.9'
 
 services:
   mysqldb:
-    image: mariadb:10.4
+    container_name: db
+    image: mariadb:10.7
     env_file:
       - environment/prod/mysql.env
     environment:
@@ -23,29 +23,9 @@ services:
       retries: 10
       start_period: 20s
 
-  mongodb:
-    image: mongo:4.2
-    env_file:
-      - environment/prod/mongo.env
-    volumes:
-      - mongo-data:/data/db
-      - ../databasesInit/mongo/prod:/docker-entrypoint-initdb.d:ro
-    networks:
-      lpdiwa-net:
-        aliases:
-          - mongodb
-    restart: always
-    healthcheck:
-      test: ["CMD", "mongo", "--eval", "'db.runCommand(\"ping\").ok'", "--quiet"]
-      interval: 60s
-      timeout: 10s
-      retries: 10
-      start_period: 20s
-
   symfony:
-    image: fguntz/symfony:1.0
-    #build:
-    #  context: ./symfony
+    container_name: symfony
+    image: fguntz/symfony:2.0
     env_file:
       - environment/prod/symfony.env
     volumes:
@@ -61,7 +41,8 @@ services:
     command: bash -c "composer install && php-fpm"
 
   http:
-    image: nginx:1.19-alpine
+    container_name: api
+    image: nginx:1.21.6-alpine
     depends_on:
       - symfony
     volumes:
@@ -77,12 +58,14 @@ services:
     restart: always
 
   npm:
-    image: node:12.18
+    container_name: www_wys
+    image: node:17-alpine
     env_file:
       - environment/prod/npm.env
     volumes:
       - ../app:/var/www/app
     working_dir: /var/www/app
+    restart: always
     command: bash -c "npm install && npm run build"
 
 volumes:
