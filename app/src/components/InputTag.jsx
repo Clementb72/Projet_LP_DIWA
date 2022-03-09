@@ -1,8 +1,9 @@
 import React from 'react';
-import 'antd/dist/antd.css';
-import '../Css/style.css'
 import { Tag, Input, Tooltip } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
+
+// import 'antd/dist/antd.css';
+import '../../public/style/style.scss';
 
 class InputTag extends React.Component {
   state = {
