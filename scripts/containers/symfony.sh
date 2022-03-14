@@ -1,2 +1,2 @@
 #!/bin/bash
-./dcTool dev -lmp exec symfony bash
+docker exec -it symfony bash

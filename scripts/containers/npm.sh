@@ -1,2 +1,2 @@
 #!/bin/bash
-./dcTool dev -lmp exec npm bash
+docker exec -it www_wys bash
