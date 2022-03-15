@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   mysqldb:
-    container_name: db
+    container_name: db_wys
     image: mariadb:10.7
     env_file:
       - environment/dev/mysql.env
@@ -13,7 +13,7 @@ services:
     restart: always
 
   symfony:
-    container_name: symfony
+    container_name: symfony_wys
     image: fguntz/symfony:2.0
     env_file:
       - environment/lemans-proxy.env
@@ -28,7 +28,7 @@ services:
     command: bash -c "composer install && php-fpm"
 
   http:
-    container_name: api
+    container_name: api_wys
     image: nginx:1.21.6-alpine
     depends_on:
       - symfony
@@ -57,7 +57,7 @@ services:
     tty: true
 
   phpmyadmin:
-    container_name: phpmyadmin
+    container_name: phpmyadmin_wys
     image: phpmyadmin:5.1
     env_file:
       - environment/lemans-proxy.env

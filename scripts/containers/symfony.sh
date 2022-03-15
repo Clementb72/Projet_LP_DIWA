@@ -1,2 +1,2 @@
 #!/bin/bash
-docker exec -it symfony bash
+docker exec -it symfony_wys bash
