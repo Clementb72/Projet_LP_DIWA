@@ -142,51 +142,27 @@ function Form({ mode = "present" }) {
                             </Button>
                             <Modal size='lg' show={show} onHide={handleClose}>
                                 <Modal.Header closeButton>
-                                    <Modal.Title>Voici toutes les ressources disponibles</Modal.Title>
+                                    <Modal.Title>R. Ressources</Modal.Title>
                                 </Modal.Header>
                                 <Modal.Body>
                                     <Ressources setListTags={setListTags} listTags={listTags} indexRessource={"ressources"}/>
                                 </Modal.Body>
-                                <Modal.Footer>
-                                    <Button variant="secondary" onClick={handleClose}>
-                                        Fermer
-                                    </Button>
-                                    <Button variant="primary" onClick={handleClose}>
-                                        Enregistrer
-                                    </Button>
-                                </Modal.Footer>
                             </Modal>
                             <Modal size='lg' show={showBesoins} onHide={handleCloseBesoins}>
                                 <Modal.Header closeButton>
-                                    <Modal.Title>Voici toutes les ressources disponibles</Modal.Title>
+                                    <Modal.Title>B. Besoins</Modal.Title>
                                 </Modal.Header>
                                 <Modal.Body>
                                     <Ressources setListTags={setListTags} listTags={listTags} indexRessource={"besoins"}/>
                                 </Modal.Body>
-                                <Modal.Footer>
-                                    <Button variant="secondary" onClick={handleCloseBesoins}>
-                                        Fermer
-                                    </Button>
-                                    <Button variant="primary" onClick={handleCloseBesoins}>
-                                        Enregistrer
-                                    </Button>
-                                </Modal.Footer>
                             </Modal>
                             <Modal size='lg' show={showAffects} onHide={handleCloseAffects}>
                                 <Modal.Header closeButton>
-                                    <Modal.Title>Voici toutes les ressources disponibles</Modal.Title>
+                                    <Modal.Title>A. Affects</Modal.Title>
                                 </Modal.Header>
                                 <Modal.Body>
                                     <Ressources setListTags={setListTags} listTags={listTags} indexRessource={"affects"}/>
                                 </Modal.Body>
-                                <Modal.Footer>
-                                    <Button variant="secondary" onClick={handleCloseAffects}>
-                                        Fermer
-                                    </Button>
-                                    <Button variant="primary" onClick={handleCloseAffects}>
-                                        Enregistrer
-                                    </Button>
-                                </Modal.Footer>
                             </Modal>
                         </div>
                         <div className="satisfaction">
