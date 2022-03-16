@@ -30,7 +30,7 @@ function LoginForm() {
             sessionStorage.setItem("user", response.data.user)
             sessionStorage.setItem("token_user", response.data.token)
             console.log("token : " + sessionStorage.getItem("token_user"));
-            navigate("/formulaire");
+            navigate("/game");
         })
         .catch((error) => {
             setDisplay(true);

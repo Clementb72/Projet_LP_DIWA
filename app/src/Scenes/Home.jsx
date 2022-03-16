@@ -3,6 +3,7 @@ import "../../public/style/home.scss";
 import wys_app from "../../public/Assets/images/logo-wys-app.png";
 import se_decouvir from "../../public/Assets/images/se_decouvrir.png";
 import { Col, Container, Button, Figure, Row } from "react-bootstrap";
+import {Link} from 'react-router-dom';
 
 function Home() {
   console.log(wys_app);
@@ -15,9 +16,11 @@ function Home() {
       <Container fluid="md">
         <Row>
           <Col>
-            <Button className="bg-white-transparent homeButton">
-              Se Connecter
-            </Button>
+            <Link to="login">
+              <Button className="bg-white-transparent homeButton">
+                Se Connecter
+              </Button>
+            </Link>
             <Button className="bg-white-transparent homeButton">
               S'inscrire
             </Button>

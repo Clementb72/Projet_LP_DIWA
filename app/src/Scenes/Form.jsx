@@ -20,7 +20,7 @@ function Form({ mode = "present" }) {
     const navigate = useNavigate();
     useEffect(() => {
         if (null == sessionStorage.getItem('token_user')) {
-            navigate("/")
+            // navigate("/")
         }
     });
 
@@ -106,6 +106,14 @@ function Form({ mode = "present" }) {
         }
     }
 
+    const changeReponse = (value) => {
+        const answerTmp = [...answer]
+        answerTmp[nbQuestion] = {
+            reponse: value
+        }
+        setAnswer(answerTmp)
+    }
+
     const changeSatisfaction = (value) => {
         const answerTmp = [...answer]
         answerTmp[nbQuestion] = {
@@ -127,7 +135,7 @@ function Form({ mode = "present" }) {
                     <div className="containter-reponse-objectif">
                         <div className="reponse">
                             <label htmlFor="answer">Ma réponse</label>
-                            <input name="answer" className="input-answer bg-white-transparent" placeholder="Entrer votre réponse" type="text" value={answer[nbQuestion].reponse} onChange={(e) => changeSatisfaction(e.target.value)}></input>
+                            <input name="answer" className="input-answer bg-white-transparent" placeholder="Entrer votre réponse" type="text" value={answer[nbQuestion].reponse} onChange={(e) => changeReponse(e.target.value)}></input>
                         </div>
                         <div className="adjectif">
                             <p>Adjectifs</p>
@@ -176,13 +184,13 @@ function Form({ mode = "present" }) {
                         </div>
                         <div className="satisfaction">
                             <p>Satisfaction</p>
-                            <Radio.Group value={answer[nbQuestion].satisfaction} onChange={(e) => { changeSatisfaction(e.target.value) }} buttonStyle="solid" className="radio-group">
+                            <Radio.Group value={answer[nbQuestion].satisfaction} onChange={(e) => changeSatisfaction(e.target.value) } buttonStyle="solid" className="radio-group">
                                 <Radio.Button value="---">---</Radio.Button>
                                 <Radio.Button value="--">--</Radio.Button>
                                 <Radio.Button value="-">-</Radio.Button>
                                 <Radio.Button value="=">=</Radio.Button>
                                 <Radio.Button value="+">+</Radio.Button>
-                                <Radio.Button value="++">++</Radio.Button>*-
+                                <Radio.Button value="++">++</Radio.Button>
                                 <Radio.Button value="+++">+++</Radio.Button>
                             </Radio.Group>
                         </div>
