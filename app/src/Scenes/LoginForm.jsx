@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios, { Axios } from 'axios';
 import { Alert } from 'react-bootstrap';
+import { Link } from "react-router-dom";
 
 
 function LoginForm() {
@@ -58,7 +59,11 @@ function LoginForm() {
                         <input type="text" name="username" placeholder="Login" value={formValue.username} onChange={handleChange} />
                         <input type="password" name="password" placeholder="Mot de passe" value={formValue.password} onChange={handleChange} />
                     </div>
-                    <button type="submit" className="btn btn">Connexion</button>
+                    <nav>
+                        <Link to="/Formulaire">
+                            <button type="submit" className="btn btn">Connexion</button>
+                        </Link>
+                    </nav>
                 </form>
             </div>
         </>
