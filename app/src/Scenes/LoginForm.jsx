@@ -60,7 +60,7 @@ function LoginForm() {
                         <input type="password" name="password" placeholder="Mot de passe" value={formValue.password} onChange={handleChange} />
                     </div>
                     <nav>
-                        <Link to="/Formulaire">
+                        <Link to="/formulaire">
                             <button type="submit" className="btn btn">Connexion</button>
                         </Link>
                     </nav>
