@@ -59,16 +59,18 @@ services:
 
   npm:
     container_name: www_wys
-    image: node:17-alpine
+    image: node:17
     env_file:
       - environment/prod/npm.env
     volumes:
       - ../app:/var/www/app
+      - nodemodules:/src/node_modules
     working_dir: /var/www/app
     restart: always
     command: bash -c "npm install && npm run build"
 
 volumes:
+  nodemodules: {}
   api-vendor:
   mysql-data:
   mongo-data:

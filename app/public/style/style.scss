@@ -1,17 +1,17 @@
-@import '~antd/dist/antd.css';
+@import "~antd/dist/antd.css";
 
 /* Constante */
 
 .bg-yellow {
-    background-color: #FECA19;
+    background-color: #feca19;
 }
 
 .bg-blue {
-    background-color: #1A5BA7;
+    background-color: #1a5ba7;
 }
 
 .bg-dark-blue {
-    background-color: #002E52;
+    background-color: #002e52;
 }
 
 .bg-white-transparent {
@@ -30,6 +30,10 @@
 
 .stepBar {
     padding: 20px;
+
+    div{
+        align-items: center;
+    }
 }
 
 .container-2 {
@@ -52,14 +56,13 @@
 
 .question {
     margin-bottom: 0;
-    font-size: 30px;
+    font-size: 25px;
     font-weight: bold;
     color: white;
 }
 
 .container-main {
     display: flex;
-    justify-content: space-around;
 }
 
 .containter-reponse-objectif {
@@ -69,11 +72,9 @@
     width: 80%;
 }
 
-.reponse, .adjectif {
-    height: 40%;
-}
-
-.reponse label, .adjectif p, .satisfaction p {
+.reponse label,
+.adjectif p,
+.satisfaction p {
     display: block;
     text-align: left;
     font-size: 18px;
@@ -83,9 +84,10 @@
     filter: drop-shadow(0 0 0.75rem white);
 }
 
-.reponse label::after, .adjectif p::after {
+.reponse label::after,
+.adjectif p::after {
     position: absolute;
-    content: '';
+    content: "";
     bottom: -4px;
     left: 0;
     width: 50px;
@@ -99,35 +101,74 @@
     font-size: 16px;
     border-radius: 20px;
     width: 95%;
+    color: white;
+
+    &::placeholder{
+        color: rgb(180, 180, 180);
+    }
 }
 
 .input-tag {
-    padding: 20px;
+    padding: 15px;
     border-radius: 20px;
     width: 95%;
     margin: auto;
     text-align: left;
+
+    div {
+        background-color: transparent;
+        border: none;
+
+        div{
+            color: white;
+            background-color: #1a5ba7;
+
+            &::after,::before{
+                background-color: white;
+            }
+        }
+
+        input {
+            color: white;
+
+            &::placeholder{
+                color: rgb(180, 180, 180);
+            }
+        }
+    }
 }
 
-.satisfaction{
+.button-tag {
+    width: 95%;
+    margin: auto;
+    margin-top: 15px;
     display: flex;
+
+    button + button {
+        margin-left: 10px;
+    }
 }
 
-.radio-group{
+.satisfaction {
+    display: flex;
+    margin-top: 10px;
+}
+
+.radio-group {
     width: 80%;
 }
 
-.radio-group > label{
-    margin: auto 10px;  
+.radio-group > label {
+    margin: auto 10px;
     background-color: rgba(255, 255, 255, 0.4);
     color: white;
 }
 
-.ant-radio-button-wrapper-checked{
-    background-color: #1A5BA7;
+.ant-radio-button-wrapper-checked {
+    background-color: #1a5ba7;
 }
 
-.radio-group .ant-radio-button-wrapper:focus-within{
+.radio-group .ant-radio-button-wrapper:focus-within {
     box-shadow: none !important;
 }
 
@@ -156,9 +197,6 @@
 .container-arrow {
     display: flex;
     justify-content: center;
-    font-size: 40px;
-    color: white;
-    ;
 }
 
 .arrow-left {
@@ -188,7 +226,7 @@
     flex-direction: column;
     align-content: center;
     justify-content: center;
-    background-color: rgba(255, 255, 255, .2);
+    background-color: rgba(255, 255, 255, 0.2);
     border-radius: 20px;
     align-items: center;
     box-shadow: 0px 0px 10px -1px rgb(255 255 255 / 50%);
@@ -198,20 +236,20 @@
     width: fit-content;
     padding: 10px 20px;
     border: none;
-    background-color: rgba(255, 255, 255, .2);
+    background-color: rgba(255, 255, 255, 0.2);
     color: white;
     border-radius: 50px;
     margin: 15px 0;
-    transition: all .5s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
 
 .login .btn:hover {
-    background-color: rgba(255, 255, 255, .4);
+    background-color: rgba(255, 255, 255, 0.4);
     cursor: pointer;
 }
 
 .login .bg-white-transparent {
-    background-color: rgba(255, 255, 255, .2);
+    background-color: rgba(255, 255, 255, 0.2);
     padding: 25px;
     border-radius: 20px;
     height: 150px;
@@ -220,8 +258,8 @@
     justify-content: space-evenly;
 }
 
-.login .bg-white-transparent input{
-    background-color: rgba(255, 255, 255, .2);
+.login .bg-white-transparent input {
+    background-color: rgba(255, 255, 255, 0.2);
     border: none;
     padding: 5px 10px;
     color: white;
@@ -232,4 +270,4 @@
     color: white;
 }
 
-/* CONNECTION FORM */ 
+/* CONNECTION FORM */

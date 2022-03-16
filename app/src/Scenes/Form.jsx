@@ -1,26 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from 'axios';
+import { Button, Modal } from "react-bootstrap";
+import { Radio } from 'antd';
+import StepBar from "../components/StepBar.jsx";
+import ReactTagInput from "@pathofdev/react-tag-input";
+import Ressources from '../components/Ressources.jsx';
+
 import fuse from '../../public/Assets/images/fuse1.png';
 import rocket from '../../public/Assets/images/space-rocket-launch.png';
-import StepBar from "../components/StepBar.jsx";
-import axios from 'axios';
-import InputTag from "../components/InputTag.jsx";
-import { Radio } from 'antd';
+
+import questions from '../../public/Assets/json/translation/questions.json';
 
 import '../../public/style/style.scss';
 
-const question = [
-    "Qu’est ce qui est stimulant pour vous pour atteindre l’objectif ?",
-    "Quelles qualités vous seront nécessaires pour l’atteinte de l’objectif ?",
-    "Au fond de vous, qu’est-ce que vous souhaiter vraiment à travers cet objectif ?",
-    "Qu’est-ce que vous avez envie de faire pour le projet ?",
-    "Quels moyens techniques, humains pouvez vous mobiliser pour atteindre l’objectif ?",
-    "Concernant les indicateurs, à quoi savez vous que vous avancer vers vos objectifs ?",
-    "Quel est le principal obstacle qui vous empêche d’avancer ?",
-    "Face à cet obstacle, quel danger percevez vous ? et dans quelle émotion ça vous mets ? ",
-    "Quelle est la réaction positive pour surmonter l’obstacle ?"
-]
+function Form({ mode = "present" }) {
 
-function Form() {
+    // Sécurité si pas connecté
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (null == sessionStorage.getItem('token_user')) {
+            navigate("/")
+        }
+    });
 
     const [answer, setAnswer] = useState([{
         reponse: "",
@@ -51,8 +53,22 @@ function Form() {
         satisfaction: ""
     },
     ]);
-    
-    const [nbQuestion, setNbQuestion] = useState(0)
+
+    const [nbQuestion, setNbQuestion] = useState(0);
+
+    const [listTags, setListTags] = useState([]);
+
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    const [showBesoins, setShowBesoins] = useState(false);
+    const handleCloseBesoins = () => setShowBesoins(false);
+    const handleShowBesoins = () => setShowBesoins(true);
+
+    const [showAffects, setShowAffects] = useState(false);
+    const handleCloseAffects = () => setShowAffects(false);
+    const handleShowAffects = () => setShowAffects(true);
 
     const previousPage = () => {
         if (nbQuestion > 0)
@@ -60,7 +76,7 @@ function Form() {
     }
 
     const nextPage = () => {
-        if (question.length > nbQuestion + 1) {
+        if (questions[mode].length > nbQuestion + 1) {
             setNbQuestion(nbQuestion + 1)
         } else {
             var i = 0;
@@ -80,18 +96,16 @@ function Form() {
             let formData = new FormData();
             formData.append('type_partie', 'SC');
             formData.append('reponses', reponseJson);
-            formData.append('users', [1,2]);
+            formData.append('users', [1, 2]);
 
-            axios.post('http://127.0.0.1:8080/api/partie', formData).then(function(response){
+            axios.post('http://127.0.0.1:8080/api/partie', formData).then(function (response) {
                 console.log(response.data)
-            }).catch(function(error){
+            }).catch(function (error) {
                 console.log(error.response.data)
             })
-
-            // axios.get('http://127.0.0.1:8080/api/parties').then(e => console.log(e));
         }
     }
-    
+
     const changeSatisfaction = (value) => {
         const answerTmp = [...answer]
         answerTmp[nbQuestion] = {
@@ -103,11 +117,11 @@ function Form() {
     return (
         // <Layout>    
         <div className="container bg-dark-blue">
-            <div className="bg-white-transparent border-radius-25 stepBar"><StepBar current={nbQuestion}/></div>
+            <div className="bg-white-transparent border-radius-25 stepBar"><StepBar current={nbQuestion} /></div>
             <div className="bg-white-transparent border-radius-25 container-2">
                 <div className="container-question bg-white-transparent">
                     <div className="circle bg-yellow"></div>
-                    <p className="question">{question[nbQuestion]}</p>
+                    <p className="question">{questions[mode][nbQuestion]}</p>
                 </div>
                 <div className="container-main">
                     <div className="containter-reponse-objectif">
@@ -117,11 +131,52 @@ function Form() {
                         </div>
                         <div className="adjectif">
                             <p>Adjectifs</p>
-                            <div className="input-tag bg-white-transparent">  <InputTag></InputTag> </div>
+                            <div className="input-tag bg-white-transparent">
+                                <ReactTagInput tags={listTags} removeOnBackspace={true} placeholder="Ecrire et presser entrer" onChange={(newTags) => {
+                                    if (!listTags.includes([...newTags].pop()) || listTags.length > newTags.length) {
+                                        setListTags(newTags);
+                                    }
+                                }} />
+                            </div>
+                            <div className="button-tag">
+                                <Button variant="primary" onClick={handleShow}>
+                                    Carte Ressources
+                                </Button>
+                                <Button variant="primary" onClick={handleShowBesoins}>
+                                    Carte Besoins
+                                </Button>
+                                <Button variant="primary" onClick={handleShowAffects}>
+                                    Carte Affects
+                                </Button>
+                                <Modal size='lg' show={show} onHide={handleClose}>
+                                    <Modal.Header closeButton>
+                                        <Modal.Title>R. Ressources</Modal.Title>
+                                    </Modal.Header>
+                                    <Modal.Body>
+                                        <Ressources setListTags={setListTags} listTags={listTags} indexRessource={"ressources"} />
+                                    </Modal.Body>
+                                </Modal>
+                                <Modal size='lg' show={showBesoins} onHide={handleCloseBesoins}>
+                                    <Modal.Header closeButton>
+                                        <Modal.Title>B. Besoins</Modal.Title>
+                                    </Modal.Header>
+                                    <Modal.Body>
+                                        <Ressources setListTags={setListTags} listTags={listTags} indexRessource={"besoins"} />
+                                    </Modal.Body>
+                                </Modal>
+                                <Modal size='lg' show={showAffects} onHide={handleCloseAffects}>
+                                    <Modal.Header closeButton>
+                                        <Modal.Title>A. Affects</Modal.Title>
+                                    </Modal.Header>
+                                    <Modal.Body>
+                                        <Ressources setListTags={setListTags} listTags={listTags} indexRessource={"affects"} />
+                                    </Modal.Body>
+                                </Modal>
+                            </div>
                         </div>
                         <div className="satisfaction">
                             <p>Satisfaction</p>
-                            <Radio.Group value={answer[nbQuestion].satisfaction} onChange={(e) => {changeSatisfaction(e.target.value)}} buttonStyle="solid" className="radio-group">
+                            <Radio.Group value={answer[nbQuestion].satisfaction} onChange={(e) => { changeSatisfaction(e.target.value) }} buttonStyle="solid" className="radio-group">
                                 <Radio.Button value="---">---</Radio.Button>
                                 <Radio.Button value="--">--</Radio.Button>
                                 <Radio.Button value="-">-</Radio.Button>
@@ -131,20 +186,16 @@ function Form() {
                                 <Radio.Button value="+++">+++</Radio.Button>
                             </Radio.Group>
                         </div>
-                        <img className="imgFuse" src={fuse} alt="fuse"></img>
                     </div>
-                </div>
-                <div className="container-arrow">
-                    <div onClick={previousPage} className="arrow-left">&#10148;</div>
-                    <div onClick={nextPage} className="arrow-right">&#10148;</div>
+                    <img className="imgFuse" src={fuse} alt="fuse"></img>
                 </div>
             </div>
-            <div className="container-arrow">             
+            <div className="container-arrow">
                 <img onClick={previousPage} className="arrow-left" src={rocket} alt="rocket"></img>
-                <img onClick={nextPage} className="arrow-right" src={rocket} alt="rocket"></img>              
+                <img onClick={nextPage} className="arrow-right" src={rocket} alt="rocket"></img>
             </div>
         </div>
-            //  </Layout>
+        //  </Layout>
     )
 }
 

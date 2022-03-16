@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   mysqldb:
-    container_name: db
+    container_name: db_wys
     image: mariadb:10.7
     env_file:
       - environment/dev/mysql.env
@@ -13,7 +13,7 @@ services:
     restart: always
 
   symfony:
-    container_name: symfony
+    container_name: symfony_wys
     image: fguntz/symfony:2.0
     env_file:
       - environment/dev/symfony.env
@@ -27,7 +27,7 @@ services:
     command: bash -c "composer install && php-fpm"
 
   http:
-    container_name: api
+    container_name: api_wys
     image: nginx:1.21.6-alpine
     depends_on:
       - symfony
@@ -37,22 +37,25 @@ services:
     ports:
       - 127.0.0.1:8080:80
     restart: always
+    tty: true
 
   npm:
     container_name: www_wys
-    image: node:17-alpine
+    image: node:17
     env_file:
       - environment/dev/npm.env
     volumes:
       - ../app:/var/www/app
+      - nodemodules:/src/node_modules
     working_dir: /var/www/app
     ports:
       - 127.0.0.1:3000:3000
     restart: always
-    command: bash -c "npm cache clear -f && npm install -f && npm run serve"
+    command: bash -c "npm cache clear -f && npm install -f && npm run start"
+    tty: true
 
   phpmyadmin:
-    container_name: phpmyadmin
+    container_name: phpmyadmin_wys
     image: phpmyadmin:5.1
     env_file:
       - environment/dev/phpmyadmin.env
@@ -63,6 +66,7 @@ services:
     restart: always
 
 volumes:
+  nodemodules: {}
   api-vendor:
   mysql-data:
   mongo-data:

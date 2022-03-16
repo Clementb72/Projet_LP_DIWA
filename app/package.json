@@ -2,13 +2,15 @@
   "name": "app",
   "version": "0.1.0",
   "scripts": {
-    "serve": "webpack server --mode development",
+    "start": "webpack server --mode development",
     "build": "webpack --mode production"
   },
   "author": "Groupe 2",
   "dependencies": {
+    "@pathofdev/react-tag-input": "^1.0.7",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^6.2.2"
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",
