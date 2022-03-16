@@ -1,17 +1,16 @@
 import React, { useState } from "react";
-import axios, { Axios } from 'axios';
+import axios from 'axios';
 import { Alert } from 'react-bootstrap';
-import { Link } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 
 function LoginForm() {
 
     const [formValue, setformValue] = useState({
         username: '',
         password: '',
-    })
-
+    });
     const [display, setDisplay] = useState(false);
+    const navigate = useNavigate();
 
     const submit = (e) => {
         e.preventDefault();
@@ -23,19 +22,20 @@ function LoginForm() {
         const headers = {
             'Content-Type': 'application/json'
         }
-        var login = axios.post("http://127.0.0.1:8080/api/login", data, {
+
+        axios.post("http://127.0.0.1:8080/api/login", data, {
             headers: headers
         })
-            .then((response) => {
-                sessionStorage.setItem("user", response.data.user)
-                sessionStorage.setItem("token_user", response.data.token)
-                console.log("token : " + sessionStorage.getItem("token_user"));
-            })
-            .catch((error) => {
-                setDisplay(true);
-                console.log(display);
-                console.log(error.response.data)
-            })
+        .then((response) => {
+            sessionStorage.setItem("user", response.data.user)
+            sessionStorage.setItem("token_user", response.data.token)
+            console.log("token : " + sessionStorage.getItem("token_user"));
+            navigate("/formulaire");
+        })
+        .catch((error) => {
+            setDisplay(true);
+            console.error(error);
+        });
     }
 
     const handleChange = (e) => {
@@ -47,7 +47,6 @@ function LoginForm() {
 
     return (
         <>
-
             <div className="formLogin">
                 {
                     display ?
@@ -60,9 +59,9 @@ function LoginForm() {
                         <input type="password" name="password" placeholder="Mot de passe" value={formValue.password} onChange={handleChange} />
                     </div>
                     <nav>
-                        <Link to="/formulaire">
-                            <button type="submit" className="btn btn">Connexion</button>
-                        </Link>
+                        {/* <Link to="/formulaire"> */}
+                        <button type="submit" className="btn btn">Connexion</button>
+                        {/* </Link> */}
                     </nav>
                 </form>
             </div>

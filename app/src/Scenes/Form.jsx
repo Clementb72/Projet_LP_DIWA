@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { Radio } from 'antd';
 import StepBar from "../components/StepBar.jsx";
@@ -14,6 +15,14 @@ import '../../public/style/style.scss';
 import { Button, Modal } from "react-bootstrap";
 
 function Form({ mode = "present" }) {
+
+    // Sécurité si pas connecté
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (null == sessionStorage.getItem('token_user')) {
+            navigate("/")
+        }
+    });
 
     const [answer, setAnswer] = useState([{
         reponse: "",
@@ -94,8 +103,6 @@ function Form({ mode = "present" }) {
             }).catch(function (error) {
                 console.log(error.response.data)
             })
-
-            // axios.get('http://127.0.0.1:8080/api/parties').then(e => console.log(e));
         }
     }
 
