@@ -44,7 +44,7 @@ function Form({ mode = "present" }) {
         satisfaction: ""
     },
     ]);
-    
+
     const [nbQuestion, setNbQuestion] = useState(0);
 
     const [listTags, setListTags] = useState([]);
@@ -87,18 +87,18 @@ function Form({ mode = "present" }) {
             let formData = new FormData();
             formData.append('type_partie', 'SC');
             formData.append('reponses', reponseJson);
-            formData.append('users', [1,2]);
+            formData.append('users', [1, 2]);
 
-            axios.post('http://127.0.0.1:8080/api/partie', formData).then(function(response){
+            axios.post('http://127.0.0.1:8080/api/partie', formData).then(function (response) {
                 console.log(response.data)
-            }).catch(function(error){
+            }).catch(function (error) {
                 console.log(error.response.data)
             })
 
             // axios.get('http://127.0.0.1:8080/api/parties').then(e => console.log(e));
         }
     }
-    
+
     const changeSatisfaction = (value) => {
         const answerTmp = [...answer]
         answerTmp[nbQuestion] = {
@@ -110,7 +110,7 @@ function Form({ mode = "present" }) {
     return (
         // <Layout>    
         <div className="container bg-dark-blue">
-            <div className="bg-white-transparent border-radius-25 stepBar"><StepBar current={nbQuestion}/></div>
+            <div className="bg-white-transparent border-radius-25 stepBar"><StepBar current={nbQuestion} /></div>
             <div className="bg-white-transparent border-radius-25 container-2">
                 <div className="container-question bg-white-transparent">
                     <div className="circle bg-yellow"></div>
@@ -125,49 +125,51 @@ function Form({ mode = "present" }) {
                         <div className="adjectif">
                             <p>Adjectifs</p>
                             <div className="input-tag bg-white-transparent">
-                                <ReactTagInput tags={listTags} removeOnBackspace={true} onChange={(newTags) => {
+                                <ReactTagInput tags={listTags} removeOnBackspace={true} placeholder="Ecrire et presser entrer" onChange={(newTags) => {
                                     if (!listTags.includes([...newTags].pop()) || listTags.length > newTags.length) {
                                         setListTags(newTags);
                                     }
-                                }}/>
+                                }} />
                             </div>
-                            <Button variant="primary" onClick={handleShow}>
-                                Carte Ressources
-                            </Button>
-                            <Button variant="primary" onClick={handleShowBesoins}>
-                                Carte Besoins
-                            </Button> 
-                            <Button variant="primary" onClick={handleShowAffects}>
-                                Carte Affects
-                            </Button>
-                            <Modal size='lg' show={show} onHide={handleClose}>
-                                <Modal.Header closeButton>
-                                    <Modal.Title>R. Ressources</Modal.Title>
-                                </Modal.Header>
-                                <Modal.Body>
-                                    <Ressources setListTags={setListTags} listTags={listTags} indexRessource={"ressources"}/>
-                                </Modal.Body>
-                            </Modal>
-                            <Modal size='lg' show={showBesoins} onHide={handleCloseBesoins}>
-                                <Modal.Header closeButton>
-                                    <Modal.Title>B. Besoins</Modal.Title>
-                                </Modal.Header>
-                                <Modal.Body>
-                                    <Ressources setListTags={setListTags} listTags={listTags} indexRessource={"besoins"}/>
-                                </Modal.Body>
-                            </Modal>
-                            <Modal size='lg' show={showAffects} onHide={handleCloseAffects}>
-                                <Modal.Header closeButton>
-                                    <Modal.Title>A. Affects</Modal.Title>
-                                </Modal.Header>
-                                <Modal.Body>
-                                    <Ressources setListTags={setListTags} listTags={listTags} indexRessource={"affects"}/>
-                                </Modal.Body>
-                            </Modal>
+                            <div className="button-tag">
+                                <Button variant="primary" onClick={handleShow}>
+                                    Carte Ressources
+                                </Button>
+                                <Button variant="primary" onClick={handleShowBesoins}>
+                                    Carte Besoins
+                                </Button>
+                                <Button variant="primary" onClick={handleShowAffects}>
+                                    Carte Affects
+                                </Button>
+                                <Modal size='lg' show={show} onHide={handleClose}>
+                                    <Modal.Header closeButton>
+                                        <Modal.Title>R. Ressources</Modal.Title>
+                                    </Modal.Header>
+                                    <Modal.Body>
+                                        <Ressources setListTags={setListTags} listTags={listTags} indexRessource={"ressources"} />
+                                    </Modal.Body>
+                                </Modal>
+                                <Modal size='lg' show={showBesoins} onHide={handleCloseBesoins}>
+                                    <Modal.Header closeButton>
+                                        <Modal.Title>B. Besoins</Modal.Title>
+                                    </Modal.Header>
+                                    <Modal.Body>
+                                        <Ressources setListTags={setListTags} listTags={listTags} indexRessource={"besoins"} />
+                                    </Modal.Body>
+                                </Modal>
+                                <Modal size='lg' show={showAffects} onHide={handleCloseAffects}>
+                                    <Modal.Header closeButton>
+                                        <Modal.Title>A. Affects</Modal.Title>
+                                    </Modal.Header>
+                                    <Modal.Body>
+                                        <Ressources setListTags={setListTags} listTags={listTags} indexRessource={"affects"} />
+                                    </Modal.Body>
+                                </Modal>
+                            </div>
                         </div>
                         <div className="satisfaction">
                             <p>Satisfaction</p>
-                            <Radio.Group value={answer[nbQuestion].satisfaction} onChange={(e) => {changeSatisfaction(e.target.value)}} buttonStyle="solid" className="radio-group">
+                            <Radio.Group value={answer[nbQuestion].satisfaction} onChange={(e) => { changeSatisfaction(e.target.value) }} buttonStyle="solid" className="radio-group">
                                 <Radio.Button value="---">---</Radio.Button>
                                 <Radio.Button value="--">--</Radio.Button>
                                 <Radio.Button value="-">-</Radio.Button>
@@ -177,20 +179,16 @@ function Form({ mode = "present" }) {
                                 <Radio.Button value="+++">+++</Radio.Button>
                             </Radio.Group>
                         </div>
-                        <img className="imgFuse" src={fuse} alt="fuse"></img>
                     </div>
-                </div>
-                <div className="container-arrow">
-                    <div onClick={previousPage} className="arrow-left">&#10148;</div>
-                    <div onClick={nextPage} className="arrow-right">&#10148;</div>
+                    <img className="imgFuse" src={fuse} alt="fuse"></img>
                 </div>
             </div>
-            <div className="container-arrow">             
+            <div className="container-arrow">
                 <img onClick={previousPage} className="arrow-left" src={rocket} alt="rocket"></img>
-                <img onClick={nextPage} className="arrow-right" src={rocket} alt="rocket"></img>              
+                <img onClick={nextPage} className="arrow-right" src={rocket} alt="rocket"></img>
             </div>
         </div>
-            //  </Layout>
+        //  </Layout>
     )
 }
 

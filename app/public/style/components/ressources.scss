@@ -1,3 +1,12 @@
+.modal-dialog .modal-content{
+  background-color: #002e52;
+  color: white;
+  border-radius: 25px;
+  .modal-header button{
+    background-color: white;
+  }
+}
+
 .wys-card {
 
   display: flex;
@@ -32,15 +41,13 @@
   }
 
   &__categorie {
-
     display: flex;
     flex-direction: column;
     align-items: center;
-
     text-align: center;
-
     background-color: rgba(255, 255, 255, 0.2);
-
+    height: 65vh;
+    overflow-y: scroll;
   }
 
   &__items {
@@ -75,7 +82,7 @@
     &--yellow {
 
       .checked {
-
+        color: black;
         background: yellow;
 
       }
