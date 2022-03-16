@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { Button, Modal } from "react-bootstrap";
 import { Radio } from 'antd';
 import StepBar from "../components/StepBar.jsx";
 import ReactTagInput from "@pathofdev/react-tag-input";
@@ -12,7 +13,6 @@ import rocket from '../../public/Assets/images/space-rocket-launch.png';
 import questions from '../../public/Assets/json/translation/questions.json';
 
 import '../../public/style/style.scss';
-import { Button, Modal } from "react-bootstrap";
 
 function Form({ mode = "present" }) {
 
