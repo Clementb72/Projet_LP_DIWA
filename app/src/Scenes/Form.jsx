@@ -20,7 +20,7 @@ function Form({ mode = "present" }) {
     const navigate = useNavigate();
     useEffect(() => {
         if (null == sessionStorage.getItem('token_user')) {
-            // navigate("/")
+            navigate("/login");
         }
     });
 
