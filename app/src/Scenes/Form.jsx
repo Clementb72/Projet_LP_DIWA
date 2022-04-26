@@ -20,7 +20,7 @@ function Form({ mode = "present" }) {
     const navigate = useNavigate();
     useEffect(() => {
         if (null == sessionStorage.getItem('token_user')) {
-            navigate("/login");
+            // navigate("/")
         }
     });
 
@@ -138,7 +138,7 @@ function Form({ mode = "present" }) {
                             <input name="answer" className="input-answer bg-white-transparent" placeholder="Entrer votre réponse" type="text" value={answer[nbQuestion].reponse} onChange={(e) => changeReponse(e.target.value)}></input>
                         </div>
                         <div className="adjectif">
-                            <p>Adjectifs</p>
+                            <p>Ressources, Besoins, Affects</p>
                             <div className="input-tag bg-white-transparent">
                                 <ReactTagInput tags={listTags} removeOnBackspace={true} placeholder="Ecrire et presser entrer" onChange={(newTags) => {
                                     if (!listTags.includes([...newTags].pop()) || listTags.length > newTags.length) {

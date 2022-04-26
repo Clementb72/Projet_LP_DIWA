@@ -7,6 +7,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import '../public/style/App.scss';
 import '../public/style/style.scss';
+import Registration from './Scenes/Registration.jsx';
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
                 <Route path='/game' element={<SelectGame/>}/>
                 <Route path='/login' element={<LoginForm/>}/>
                 <Route path='/formulaire' element={<Form/>}/>
+                <Route path='/registration' element={<Registration/>}/>
             </Routes>
         </div>
     );
