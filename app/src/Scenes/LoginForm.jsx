@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from 'axios';
 import { Alert } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
+import Navigation from "../components/Navigation.jsx";
 
 function LoginForm() {
 
@@ -48,13 +49,16 @@ function LoginForm() {
     return (
         <>
             <div className="formLogin">
+      <Navigation />
                 {
                     display ?
                         <Alert variant='danger'>Erreur lors de la connexion, vérifier vos identifiants.</Alert>
                         : ''
                 }
                 <form onSubmit={submit} className="login">
-                    <div className="bg-white-transparent">
+
+                    <div>
+                        <h2>Connexion</h2>
                         <input type="text" name="username" placeholder="Login" value={formValue.username} onChange={handleChange} />
                         <input type="password" name="password" placeholder="Mot de passe" value={formValue.password} onChange={handleChange} />
                     </div>

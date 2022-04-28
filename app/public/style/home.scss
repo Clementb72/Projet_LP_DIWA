@@ -1,14 +1,22 @@
 body {
   height: 100vh;
   width: 100vw;
+  min-width: 1300px;
   background-color: #002e52; // #002E52
 }
-
-img {
-  width: 30em;
-  height: auto;
+.navBar {
+  width: 100%;
+  min-width: 1300px;
+  position: relative;
 }
-
+.toggleMenu {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-image: url('../../public/Assets/images/menu.svg');
+  top: 50%;
+  right: 40px;transform: translateY(-50%);
+}
 p {
   color: white;
 }
@@ -33,33 +41,7 @@ div.col {
     background-color: rgba(255, 255, 255, 0.4);
   }
 }
-.homeCards {
-  img {
-    filter: grayscale(1);
-    transition: .5s all ease-in-out;
-    &:hover{
-      filter:none;
-    }
-  }
-  .col {
-    &:first-child .figure-caption {
-      background-color: #1A5BA7;
-    }
-    &:last-child .figure-caption {
-      background-color:#EA1D24;
 
-    }
-  }
-
-  .figure-caption {
-    background-color: #FECA19;
-    color: white;
-    text-transform: uppercase;
-    font-weight: bold;
-    text-align: center;
-    padding: 1em;
-  }
-}
 .figure-img {
   width: unset;
 }
@@ -74,8 +56,7 @@ div.col {
   font-weight: 200;
 }
 .WYSLogo {
-  width: 200px;
-  height: auto;
+  height: 100px;
   margin: 15px 0;
 }
 .menuSlice {
@@ -84,7 +65,8 @@ div.col {
   margin: 0 auto;
 }
 .homeUpper {
-  height: 110vh
+  height: 110vh;
+  position: relative;
 }
 .homeFlex {
   display: flex;
@@ -101,6 +83,7 @@ div.col {
   text-align: left;
   font-size: 40px;
   font-weight: 300;
+  margin: 0;
 }
 .catchLine {
   text-align: left;
@@ -113,7 +96,10 @@ div.col {
   max-width: 500px
 }
 .btnCont {
-  margin: -50px 0 50px 0;
+  position: absolute;
+  bottom: 25%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .btnCont h3 {
  color: white;
@@ -122,6 +108,10 @@ div.col {
   margin-top: 50px;
   text-decoration: none;
   color: white;
+  position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 .homeLower {
   background-color: #fff;
@@ -151,23 +141,40 @@ div.col {
   padding: 15px;
   width: 20%;
   border-radius: 25px;
+  position: relative;
 }
-.cardTitle {
+.homeCards h4 {
   background-color: #F9C013;
   padding: 10px;
   font-size:  20px;
   border-radius: 50px;
   color: white;
 }
-.cardDesc {
+.homeCards:first-child h4{
+  background-color: #DE1E26;
+}
+.homeCards:last-child h4{
+  background-color: #1370B8;
+}
+.homeCards img {
+  width: 100%;
+  margin: 15px 0;
+  border-radius: 25px;
+}
+.homeCards p {
   color: #595959;
   font-weight: 500;
   text-align: left;
   padding: 10px;
 }
-.homeCards:first-child .cardTitle{
-  background-color: #DE1E26;
+.homeCards a {
+  color: #595959;
+  text-decoration: none;
+  font-weight: 700;
+  text-align: left;
+  padding: 10px;
 }
-.homeCards:last-child .cardTitle{
-  background-color: #1370B8;
+.homeCards a:hover {
+  color: #595959;
+  text-decoration: underline;
 }
