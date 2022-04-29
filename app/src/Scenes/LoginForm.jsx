@@ -1,9 +1,11 @@
-import React, { useState } from "react";
-import axios from 'axios';
+import React, { useContext, useState } from "react";
+import RootStore from '../RootStore.jsx';
 import { Alert } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 
 function LoginForm() {
+
+    const { userManager } = useContext(RootStore);
 
     const [formValue, setformValue] = useState({
         username: '',
@@ -13,29 +15,21 @@ function LoginForm() {
     const navigate = useNavigate();
 
     const submit = (e) => {
+
         e.preventDefault();
-        const data = {
-            username: formValue.username,
-            password: formValue.password
-        }
 
-        const headers = {
-            'Content-Type': 'application/json'
-        }
-
-        axios.post("http://127.0.0.1:8080/api/login", data, {
-            headers: headers
-        })
-        .then((response) => {
-            sessionStorage.setItem("user", response.data.user)
-            sessionStorage.setItem("token_user", response.data.token)
-            console.log("token : " + sessionStorage.getItem("token_user"));
-            navigate("/game");
-        })
-        .catch((error) => {
+        try {
+            userManager.connexion(formValue.username, formValue.password).then((result) => {
+                console.log(result);
+                navigate("/game");                
+            }).catch((err) => {
+                throw new Error(err);
+            });
+        } catch (error) {
             setDisplay(true);
             console.error(error);
-        });
+        }
+
     }
 
     const handleChange = (e) => {
