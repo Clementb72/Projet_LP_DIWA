@@ -6,48 +6,93 @@ body {
 
 .selectGame {
     width: 100%;
+    min-width: 1300px;
     height: 100vh;
+
     h1 {
         color: white;
         margin: 50px auto;
     }
-    .button-valider {
-        display: block;
+
+    .buttonValider {
         border-radius: 50px;
         border: none;
         padding: 10px 20px;
         width: 200px;
-        margin: 40px auto 10px;
-        box-shadow: 0px 0px 10px -1px rgb(255 255 255 / 20%);
-        background-color: rgba(255, 255, 255, 0.2);
+        background-color: #0C5788;
+        color: #fff;
+        font-weight: bold;
+        text-decoration: none;
         transition: 0.5s all ease-in-out;
+
         &:hover {
-            background-color: rgba(255, 255, 255, 0.4);
+            background-color: #fff;
+            color: #0C5788;
         }
     }
 }
 
-.parcours-container {
-    width: 100%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%);
-    display: flex;
-    justify-content: space-around;
-    div {
-        background-color: #fff;
-        border-radius: 15px;
-        width: 200px;
-        cursor: pointer;
+.parcours {
+    &Container {
+        width: 100%;
+        position: absolute;
+        top: 60%;
+        left: 0;
+        transform: translateY(-50%);
+        min-width: 1300px;
+        padding: 25px 0;
+    }
+    &Flex {
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        margin: 0 0 60px;
+    }
 
-        &:hover {
-            background-color: rgba(255, 255, 255, 0.4);
+    &__Card {
+        padding: 15px;
+        position: relative;
+        background-color: #fff;
+        width: 350px;
+        border-radius: 25px;
+
+        h3 {
+            color: #fff;
+            background-color: #0C5788;
+            font-size: 20px;
+            padding: 10px;
+            border-radius: 50px;
         }
 
         p {
-            &:first-child {
-                font-weight: bold;
+            color: #595959;
+            font-weight: 500;
+            text-align: left;
+            padding: 10px;
+        }
+
+        &:before {
+            content: " ";
+            background-image: url('../../public/Assets/images/illu2.png');
+            width: 250px;
+            height: 146px;
+            left: 50%;
+            top: -146px;
+            position: absolute;
+            background-size: contain;
+            background-repeat: no-repeat;
+            transform: translateX(-50%);
+        }
+
+        &:first-of-type {
+            &:before {
+                background-image: url('../../public/Assets/images/illu3.png');
+            }
+        }
+
+        &:last-of-type {
+            &:before {
+                background-image: url('../../public/Assets/images/illu1.png');
             }
         }
     }
