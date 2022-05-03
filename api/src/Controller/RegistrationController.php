@@ -56,11 +56,15 @@ class RegistrationController extends AbstractController
             );
             $nom = $params->get('nom');
             $prenom = $params->get('prenom');
+            $dateDeNaissance = $params->get('dateDeNaissance');
+            $telephone = $params->get('telephone');
 
             $user->setEmail($email);
             $user->setPassword($mdp);
             $user->setPrenom($prenom);
             $user->setNom($nom);
+            $user->setDateDeNaissance($dateDeNaissance);
+            $user->setTelephone($telephone);
 
             $entityManager->persist($user);
             $entityManager->flush();
