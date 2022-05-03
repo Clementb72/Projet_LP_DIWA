@@ -21,9 +21,10 @@ function Form() {
     const navigate = useNavigate();
 
     const location = useLocation();
-    const { idTypePartie } = location.state;
-    const typePartie = typePartieManager.getTypePartieById(idTypePartie);
-    const mode = typePartie.temps;
+
+    const [idTypePartie, setIdTypePartie] = useState(0);
+    const [typePartie, setTypePartie] = useState(typePartieManager.getTypePartieById(idTypePartie));
+    const [mode, setMode] = useState(typePartie.temps);
 
     const [answer, setAnswer] = useState(partieManager.initPartie());
 
@@ -31,10 +32,22 @@ function Form() {
 
     useEffect(() => {
         // Sécurité si pas connecté
-        if (null === userManager.user) {
+        if (null === userManager.user)
             navigate("/login");
-        }
+        if (null != location.state) {
+            let id = location.state.idTypePartie || 0;
+            let typePartie = typePartieManager.getTypePartieById(id);
+            let temps = typePartie.temps;
+            setIdTypePartie(id);
+            setTypePartie(typePartie);
+            setMode(temps);
+            if (id === 0)
+                navigate("/game"); 
+        } else // Sécurité si user passe par l'url pour accéder à la page sans avoir séléctionné le mode de jeu
+            navigate("/game");            
     }, []);
+
+    
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);

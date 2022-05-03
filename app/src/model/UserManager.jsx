@@ -13,6 +13,11 @@ class UserManager {
     }
 
     get user() {
+        if (sessionStorage.getItem("user")) {
+            let data = JSON.parse(sessionStorage.getItem("user"));
+            this._user = new User(data.id, data.nom, data.prenom, data.email, data.roles, data.token);
+            return this._user;
+        }
         return this._user;
     }
 
@@ -26,25 +31,29 @@ class UserManager {
 
         try {
 
-            const { data } = await axios.post(url, {
+            const response = await axios.post(url, {
                 username: email,
                 password: password
             });
 
-            if (undefined != data) {
+            const { status, data } = response;
+
+            if (status === 200) {
 
                 runInAction(() => {
                     this._user = new User(data.id, data.nom, data.prenom, data.email, data.roles, data.token);
-                    this._dataLoading = false;
+                    sessionStorage.setItem("user", JSON.stringify(data));
                 });
                 
-                return this._user;
-                
             }
+            
+            this._dataLoading = false;
+            return response;
 
         } catch (err) {
 
-            console.log(err);
+            this._dataLoading = false;
+            return err;
             
         }
         
