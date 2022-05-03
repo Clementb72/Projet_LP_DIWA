@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import RootStore from '../RootStore.jsx';
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Button, Modal } from "react-bootstrap";
 import { Radio } from 'antd';
 import StepBar from "../components/StepBar.jsx";
@@ -14,11 +14,16 @@ import questions from '../../public/Assets/json/translation/questions.json';
 
 import '../../public/style/style.scss';
 
-function Form({ mode = "present" }) {
+function Form() {
 
-    const { partieManager, userManager } = useContext(RootStore);
+    const { partieManager, userManager, typePartieManager } = useContext(RootStore);
 
     const navigate = useNavigate();
+
+    const location = useLocation();
+    const { idTypePartie } = location.state;
+    const typePartie = typePartieManager.getTypePartieById(idTypePartie);
+    const mode = typePartie.temps;
 
     const [answer, setAnswer] = useState(partieManager.initPartie());
 
