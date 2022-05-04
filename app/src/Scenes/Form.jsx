@@ -49,10 +49,12 @@ function Form({ mode = "present" }) {
     }
 
     const nextPage = () => {
-        if (questions[mode].length > nbQuestion + 1)
+        if (questions[mode].length > nbQuestion + 1){
             setNbQuestion(nbQuestion + 1)
-        else
-            partieManager.sendPartie(partieManager.buildPartie("SC", answer, userManager.user));
+        }else{
+            partieManager.savePartie(partieManager.buildPartie("SC", answer, userManager.user))
+            navigate("/debriefing")
+        }
     }
 
     const changeReponse = (value) => {
