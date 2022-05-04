@@ -7,11 +7,17 @@ import StepBar from "../components/StepBar.jsx";
 import ReactTagInput from "@pathofdev/react-tag-input";
 import Ressources from '../components/Ressources.jsx';
 
-import fuse from '../../public/Assets/images/fuse1.png';
-import rocket from '../../public/Assets/images/space-rocket-launch.png';
+// Images
+import fuse from '../../public/Assets/images/fuse2.svg';
+import rocket from '../../public/Assets/images/chevron-droit.png';
+import but from '../../public/Assets/images/but.png';
+import imgRessources from '../../public/Assets/images/Game_Ressources.svg';
+import imgBesoins from '../../public/Assets/images/Game_Besoin.svg';
+import imgAffect from '../../public/Assets/images/Game_Affect.svg';
 
 import questions from '../../public/Assets/json/translation/questions.json';
 
+// Styles
 import '../../public/style/style.scss';
 
 function Form({ mode = "present" }) {
@@ -70,6 +76,10 @@ function Form({ mode = "present" }) {
     const handleCloseAffects = () => setShowAffects(false);
     const handleShowAffects = () => setShowAffects(true);
 
+    const [showObjectif, setShowObjectif] = useState(true);
+    const [objectif, setObjectif] = useState("");
+
+
     const previousPage = () => {
         if (nbQuestion > 0)
             setNbQuestion(nbQuestion - 1)
@@ -125,11 +135,37 @@ function Form({ mode = "present" }) {
     return (
         // <Layout>    
         <div className="container bg-dark-blue">
-            <div className="bg-white-transparent border-radius-25 stepBar"><StepBar current={nbQuestion} /></div>
+            <div className="stepBar">
+                <div onClick={previousPage} className={`container-arrow ${nbQuestion === 0 ? 'disabled' : ''}`}>
+                    <img className="arrow-left" src={rocket} alt="rocket"></img>
+                    <p>Question précédente</p>
+                </div>
+                <div className="bar bg-white-transparent border-radius-25">
+                    <StepBar current={nbQuestion} />
+                </div>
+                <div onClick={nextPage} className={`container-arrow ${questions[mode].length === nbQuestion + 1 ? 'disabled' : ''}`}>
+                    <p>Question suivante</p>
+                    <img className="arrow-right" src={rocket} alt="rocket"></img>
+                </div>
+            </div>
             <div className="bg-white-transparent border-radius-25 container-2">
                 <div className="container-question bg-white-transparent">
-                    <div className="circle bg-yellow"></div>
-                    <p className="question">{questions[mode][nbQuestion]}</p>
+                    <p className="question">{nbQuestion + 1 + ' - ' + questions[mode][nbQuestion]}</p>
+                    <img onClick={() => setShowObjectif(true)} src={but} alt="objectif" />
+                    <Modal className="modal-objectif" size="md" centered show={showObjectif} onHide={() => setShowObjectif(false)}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Objectif</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <label htmlFor="objectif">Quel est votre objectif ?</label>
+                            <input value={objectif} onChange={(e) => setObjectif(e.target.value)} type="text" name="objectif" />
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={() => setShowObjectif(false)}>
+                                Valider
+                            </Button>
+                        </Modal.Footer>
+                    </Modal>
                 </div>
                 <div className="container-main">
                     <div className="containter-reponse-objectif">
@@ -147,14 +183,18 @@ function Form({ mode = "present" }) {
                                 }} />
                             </div>
                             <div className="button-tag">
-                                <Button variant="primary" onClick={handleShow}>
-                                    Carte Ressources
-                                </Button>
+                                <p>Aides :</p>
                                 <Button variant="primary" onClick={handleShowBesoins}>
-                                    Carte Besoins
+                                    <img src={imgAffect} alt="Affect" />
+                                    <p>Affect</p>
                                 </Button>
                                 <Button variant="primary" onClick={handleShowAffects}>
-                                    Carte Affects
+                                    <img src={imgBesoins} alt="Besoins" />
+                                    <p>Besoins</p>
+                                </Button>
+                                <Button variant="primary" onClick={handleShow}>
+                                    <img src={imgRessources} alt="Ressources" />
+                                    <p>Ressources</p>
                                 </Button>
                                 <Modal size='lg' show={show} onHide={handleClose}>
                                     <Modal.Header closeButton>
@@ -184,7 +224,7 @@ function Form({ mode = "present" }) {
                         </div>
                         <div className="satisfaction">
                             <p>Satisfaction</p>
-                            <Radio.Group value={answer[nbQuestion].satisfaction} onChange={(e) => changeSatisfaction(e.target.value) } buttonStyle="solid" className="radio-group">
+                            <Radio.Group value={answer[nbQuestion].satisfaction} onChange={(e) => changeSatisfaction(e.target.value)} buttonStyle="solid" className="radio-group">
                                 <Radio.Button value="---">---</Radio.Button>
                                 <Radio.Button value="--">--</Radio.Button>
                                 <Radio.Button value="-">-</Radio.Button>
@@ -197,10 +237,6 @@ function Form({ mode = "present" }) {
                     </div>
                     <img className="imgFuse" src={fuse} alt="fuse"></img>
                 </div>
-            </div>
-            <div className="container-arrow">
-                <img onClick={previousPage} className="arrow-left" src={rocket} alt="rocket"></img>
-                <img onClick={nextPage} className="arrow-right" src={rocket} alt="rocket"></img>
             </div>
         </div>
         //  </Layout>
