@@ -28,9 +28,11 @@ function Home() {
                 Se Connecter
               </Button>
             </Link>
-            <Button className="bg-white-transparent homeButton">
-              S'inscrire
-            </Button>
+            <Link to="register">
+              <Button className="bg-white-transparent homeButton">
+                S'inscrire
+              </Button>
+            </Link>
           </Col>
         </Row>
       </Container>
