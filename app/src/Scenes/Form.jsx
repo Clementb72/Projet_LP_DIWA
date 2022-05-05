@@ -47,8 +47,6 @@ function Form() {
             navigate("/game");            
     }, []);
 
-    
-
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -109,7 +107,7 @@ function Form() {
                             <input name="answer" className="input-answer bg-white-transparent" placeholder="Entrer votre réponse" type="text" value={answer[nbQuestion].reponse} onChange={(e) => changeReponse(e.target.value)}></input>
                         </div>
                         <div className="adjectif">
-                            <p>Adjectifs</p>
+                            <p>Ressources, Besoins, Affects</p>
                             <div className="input-tag bg-white-transparent">
                                 <ReactTagInput tags={answer[nbQuestion].listTags} removeOnBackspace={true} placeholder="Ecrire et presser entrer" onChange={(newTags) => {
                                     if (!answer[nbQuestion].listTags.includes([...newTags].pop()) || answer[nbQuestion].listTags.length > newTags.length) {
