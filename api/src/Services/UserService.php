@@ -21,4 +21,8 @@ class UserService {
 
     }
 
+    public function getUser(int $id) {
+        return $this->userRepository->findOneBy(['id' => $id]);
+    }
+
 }

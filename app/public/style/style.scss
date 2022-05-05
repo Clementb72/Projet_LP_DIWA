@@ -26,40 +26,105 @@
 
 .container {
     padding: 7vw;
-}
 
-.stepBar {
-    padding: 20px;
-
-    div{
+    .stepBar {
+        display: flex;
         align-items: center;
+        justify-content: space-between;
+
+        .bar {
+            width: 70%;
+            padding: 5px 20px;
+        }
+
+        .container-arrow {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            width: 150px;
+
+            img {
+                width: 50px;
+                height: 50px;
+            }
+            .arrow-left {
+                transform: rotate(-180deg);
+            }
+
+            p {
+                margin: 0;
+            }
+
+            &.disabled {
+                opacity: 0.5;
+                cursor: default;
+            }
+        }
+
+        .ant-steps {
+            align-items: center;
+
+            .anticon {
+                vertical-align: 2px;
+            }
+        }
+    }
+
+    .container-2 {
+        margin-top: 40px;
+        overflow: hidden;
     }
 }
 
-.container-2 {
-    margin-top: 40px;
-    overflow: hidden;
-}
+// Question posé
 
 .container-question {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding: 15px;
+    padding: 10px 20px;
+
+    .question {
+        margin-bottom: 0;
+        margin-left: 20px;
+        font-size: 25px;
+        font-weight: bold;
+        color: white;
+    }
+
+    img {
+        width: 50px;
+        cursor: pointer;
+    }
 }
 
-.circle {
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    margin: auto 20px;
+// Modal Objectif
+
+.modal-objectif {
+    label {
+        font-size: 20px;
+    }
+
+    input {
+        display: block;
+        border: none;
+        font-size: 16px;
+        border-radius: 5px;
+        width: 100%;
+        margin-top: 10px;
+        color: black;
+    }
+
+    .modal-footer {
+        justify-content: center;
+
+        button {
+            padding: 5px 30px;
+        }
+    }
 }
 
-.question {
-    margin-bottom: 0;
-    font-size: 25px;
-    font-weight: bold;
-    color: white;
-}
+// Réponse de l'utilisateur
 
 .container-main {
     display: flex;
@@ -73,7 +138,7 @@
 }
 
 .reponse label,
-.adjectif p,
+.adjectif > p,
 .satisfaction p {
     display: block;
     text-align: left;
@@ -103,7 +168,7 @@
     width: 95%;
     color: white;
 
-    &::placeholder{
+    &::placeholder {
         color: rgb(180, 180, 180);
     }
 }
@@ -119,11 +184,12 @@
         background-color: transparent;
         border: none;
 
-        div{
+        div {
             color: white;
             background-color: #1a5ba7;
 
-            &::after,::before{
+            &::after,
+            ::before {
                 background-color: white;
             }
         }
@@ -131,7 +197,7 @@
         input {
             color: white;
 
-            &::placeholder{
+            &::placeholder {
                 color: rgb(180, 180, 180);
             }
         }
@@ -143,25 +209,51 @@
     margin: auto;
     margin-top: 15px;
     display: flex;
+    align-items: center;
 
-    button + button {
-        margin-left: 10px;
+    > p{
+        margin-bottom: 0;
+        margin-right: 20px;
+        font-size: 16px;
+    }
+
+    button {
+        background-color: rgba(255, 255, 255, 0.2);
+        border: none;
+        display: flex;
+        align-items: center;
+        
+        img {
+            height: 30px;
+            width: auto;
+        }
+
+        p{
+            font-size: 18px;
+            font-weight: bold;
+            margin-left: 10px;
+            margin-bottom: 0;
+        }
+
+        & + button {
+            margin-left: 10px;
+        }
     }
 }
 
 .satisfaction {
     display: flex;
     margin-top: 10px;
-}
 
-.radio-group {
-    width: 80%;
-}
+    .radio-group {
+        width: 80%;
 
-.radio-group > label {
-    margin: auto 10px;
-    background-color: rgba(255, 255, 255, 0.4);
-    color: white;
+        > label {
+            margin: auto 10px;
+            background-color: rgba(255, 255, 255, 0.4);
+            color: white;
+        }
+    }
 }
 
 .ant-radio-button-wrapper-checked {
@@ -190,25 +282,11 @@
 }
 
 .imgFuse {
-    width: 10%;
+    width: 15%;
     margin: 20px auto;
-}
-
-.container-arrow {
-    display: flex;
-    justify-content: center;
-    width: 300px;
-    margin: auto;
-}
-
-.arrow-left {
-    margin-right: 50px;
-    transform: rotate(-180deg);
-    cursor: pointer;
-}
-
-.arrow-right {
-    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 20px;
 }
 
 /* CONNECTION FORM */

@@ -8,7 +8,6 @@ import {Link} from 'react-router-dom';
 import Navigation from "../components/Navigation.jsx";
 
 function Home() {
-
   return (
     <div>
     <div className="homeUpper">
