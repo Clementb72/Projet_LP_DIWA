@@ -1,9 +1,12 @@
-import React, { useState } from "react";
-import axios from 'axios';
+import React, { useContext, useState } from "react";
+import RootStore from '../RootStore.jsx';
 import { Alert } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
+import Navigation from "../components/Navigation.jsx";
 
 function LoginForm() {
+
+    const { userManager } = useContext(RootStore);
 
     const [formValue, setformValue] = useState({
         username: '',
@@ -13,29 +16,18 @@ function LoginForm() {
     const navigate = useNavigate();
 
     const submit = (e) => {
+
         e.preventDefault();
-        const data = {
-            username: formValue.username,
-            password: formValue.password
-        }
 
-        const headers = {
-            'Content-Type': 'application/json'
-        }
-
-        axios.post("http://127.0.0.1:8080/api/login", data, {
-            headers: headers
-        })
-        .then((response) => {
-            sessionStorage.setItem("user", response.data.user)
-            sessionStorage.setItem("token_user", response.data.token)
-            console.log("token : " + sessionStorage.getItem("token_user"));
-            navigate("/game");
-        })
-        .catch((error) => {
+        userManager.connexion(formValue.username, formValue.password).then((response) => {
+            if (response.status === 200)
+                navigate("/game");
+            else
+                throw new Error('La connexion a échoué');
+        }).catch((err) => {
             setDisplay(true);
-            console.error(error);
         });
+
     }
 
     const handleChange = (e) => {
@@ -48,13 +40,16 @@ function LoginForm() {
     return (
         <>
             <div className="formLogin">
+      <Navigation />
                 {
                     display ?
                         <Alert variant='danger'>Erreur lors de la connexion, vérifier vos identifiants.</Alert>
                         : ''
                 }
                 <form onSubmit={submit} className="login">
-                    <div className="bg-white-transparent">
+
+                    <div>
+                        <h2>Connexion</h2>
                         <input type="text" name="username" placeholder="Login" value={formValue.username} onChange={handleChange} />
                         <input type="password" name="password" placeholder="Mot de passe" value={formValue.password} onChange={handleChange} />
                     </div>

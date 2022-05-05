@@ -36,6 +36,11 @@ class TypePartie
      */
     private $acro;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $temps;
+
     public function getId(): int
     {
         return $this->id;
@@ -61,6 +66,18 @@ class TypePartie
     public function setAcro(string $acro): self
     {
         $this->acro = $acro;
+
+        return $this;
+    }
+
+    public function getTemps(): ?string
+    {
+        return $this->temps;
+    }
+
+    public function setTemps(string $temps): self
+    {
+        $this->temps = $temps;
 
         return $this;
     }

@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\TypePartie;
+use App\Services\Interfaces\TypePartieRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -12,7 +13,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method TypePartie[]    findAll()
  * @method TypePartie[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class TypePartieRepository extends ServiceEntityRepository
+class TypePartieRepository extends ServiceEntityRepository implements TypePartieRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
