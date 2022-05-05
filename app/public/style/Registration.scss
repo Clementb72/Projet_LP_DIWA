@@ -1,7 +1,7 @@
 input:required:invalid, input:focus:invalid {
-    border-color: red; 
-  }
+  border-color: red; 
+}
 
-  input:required:valid {
-    border-color:green;
+input:required:valid {
+  border-color:green;
 }
