@@ -18,17 +18,14 @@ function LoginForm() {
 
         e.preventDefault();
 
-        try {
-            userManager.connexion(formValue.username, formValue.password).then((result) => {
-                console.log(result);
-                navigate("/game");                
-            }).catch((err) => {
-                throw new Error(err);
-            });
-        } catch (error) {
+        userManager.connexion(formValue.username, formValue.password).then((response) => {
+            if (response.status === 200)
+                navigate("/game");
+            else
+                throw new Error('La connexion a échoué');
+        }).catch((err) => {
             setDisplay(true);
-            console.error(error);
-        }
+        });
 
     }
 

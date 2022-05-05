@@ -58,10 +58,17 @@ class TypePartieManager {
     }
 
     getTypePartieById(id) {
-        return this._typesPartie.filter((type) => {
+
+        let typePartie = this._typesPartie.filter((type) => {
             if (type.id === id)
                 return type;
         })[0];
+
+        if (undefined === typePartie)
+            return new TypePartie(0, null, null, "present");
+
+        return typePartie;
+
     }
 
 }

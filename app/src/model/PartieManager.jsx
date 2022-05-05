@@ -13,7 +13,7 @@ class PartieManager {
     }
 
     get parties() {
-        return this._user;
+        return this._parties;
     }
 
     initPartie() {
@@ -38,14 +38,18 @@ class PartieManager {
 
     }
 
-    sendPartie(partie) {
+    savePartie(partie){
+        if(partie instanceof Partie) this._parties.push(partie)
+    }
+
+    async sendPartie(partie) {
 
         let formData = new FormData();
-        formData.append('type_partie', 'SC');
+        formData.append('type_partie', partie.typePartie.acro);
         formData.append('reponses', partie.toStringResults());
         formData.append('users', partie.user.id);
 
-        axios.post('http://127.0.0.1:8080/api/partie', formData).then(function (response) {
+        await axios.post('http://127.0.0.1:8080/api/partie', formData).then(function (response) {
             console.log(response.data)
         }).catch(function (error) {
             console.log(error.response.data)

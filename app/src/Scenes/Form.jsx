@@ -21,9 +21,10 @@ function Form() {
     const navigate = useNavigate();
 
     const location = useLocation();
-    const { idTypePartie } = location.state;
-    const typePartie = typePartieManager.getTypePartieById(idTypePartie);
-    const mode = typePartie.temps;
+
+    const [idTypePartie, setIdTypePartie] = useState(0);
+    const [typePartie, setTypePartie] = useState(typePartieManager.getTypePartieById(idTypePartie));
+    const [mode, setMode] = useState(typePartie.temps);
 
     const [answer, setAnswer] = useState(partieManager.initPartie());
 
@@ -31,9 +32,19 @@ function Form() {
 
     useEffect(() => {
         // Sécurité si pas connecté
-        if (null === userManager.user) {
+        if (null === userManager.user)
             navigate("/login");
-        }
+        if (null != location.state) {
+            let id = location.state.idTypePartie || 0;
+            let typePartie = typePartieManager.getTypePartieById(id);
+            let temps = typePartie.temps;
+            setIdTypePartie(id);
+            setTypePartie(typePartie);
+            setMode(temps);
+            if (id === 0)
+                navigate("/game"); 
+        } else // Sécurité si user passe par l'url pour accéder à la page sans avoir séléctionné le mode de jeu
+            navigate("/game");            
     }, []);
 
     const [show, setShow] = useState(false);
@@ -54,10 +65,12 @@ function Form() {
     }
 
     const nextPage = () => {
-        if (questions[mode].length > nbQuestion + 1)
+        if (questions[mode].length > nbQuestion + 1){
             setNbQuestion(nbQuestion + 1)
-        else
-            partieManager.sendPartie(partieManager.buildPartie("SC", answer, userManager.user));
+        }else{
+            partieManager.savePartie(partieManager.buildPartie(typePartie, answer, userManager.user))
+            navigate("/debriefing")
+        }
     }
 
     const changeReponse = (value) => {
@@ -94,7 +107,7 @@ function Form() {
                             <input name="answer" className="input-answer bg-white-transparent" placeholder="Entrer votre réponse" type="text" value={answer[nbQuestion].reponse} onChange={(e) => changeReponse(e.target.value)}></input>
                         </div>
                         <div className="adjectif">
-                            <p>Adjectifs</p>
+                            <p>Ressources, Besoins, Affects</p>
                             <div className="input-tag bg-white-transparent">
                                 <ReactTagInput tags={answer[nbQuestion].listTags} removeOnBackspace={true} placeholder="Ecrire et presser entrer" onChange={(newTags) => {
                                     if (!answer[nbQuestion].listTags.includes([...newTags].pop()) || answer[nbQuestion].listTags.length > newTags.length) {

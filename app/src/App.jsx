@@ -6,9 +6,11 @@ import SelectGame from './Scenes/SelectGame.jsx';
 import Form from './Scenes/Form.jsx';
 import LoginForm from './Scenes/LoginForm.jsx';
 import { Routes, Route } from 'react-router-dom';
+import Debriefing from './Scenes/Debriefing.jsx';
 
 import '../public/style/App.scss';
 import '../public/style/style.scss';
+import Registration from './Scenes/Registration.jsx';
 
 function App() {
     return (
@@ -17,8 +19,10 @@ function App() {
                 <Routes>
                     <Route path='/'  element={<Home/>}/>
                     <Route path='/game' element={<SelectGame/>}/>
+                    <Route path='/registration' element={<Registration/>}/>
                     <Route path='/login' element={<LoginForm/>}/>
                     <Route path='/formulaire' element={<Form/>}/>
+                    <Route path='/debriefing' element={<Debriefing/>}/>
                 </Routes>
             </div>
         </RootStore.Provider>
