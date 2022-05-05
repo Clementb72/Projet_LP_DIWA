@@ -70,7 +70,7 @@ function Form() {
         if (questions[mode].length > nbQuestion + 1){
             setNbQuestion(nbQuestion + 1)
         }else{
-            partieManager.savePartie(partieManager.buildPartie("SC", answer, userManager.user))
+            partieManager.savePartie(partieManager.buildPartie(typePartie, answer, userManager.user))
             navigate("/debriefing")
         }
     }

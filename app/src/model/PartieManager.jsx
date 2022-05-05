@@ -45,7 +45,7 @@ class PartieManager {
     async sendPartie(partie) {
 
         let formData = new FormData();
-        formData.append('type_partie', 'SC');
+        formData.append('type_partie', partie.typePartie.acro);
         formData.append('reponses', partie.toStringResults());
         formData.append('users', partie.user.id);
 
