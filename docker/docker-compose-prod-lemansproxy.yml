@@ -68,7 +68,6 @@ services:
       - ../app:/var/www/app
       - nodemodules:/src/node_modules
     working_dir: /var/www/app
-    restart: always
     command: bash -c "npm install && npm run build"
 
 volumes:
