@@ -47,15 +47,17 @@ class RegistrationController extends AbstractController
     {
         try{
             $user = new User();
-            $params = $request->request;
-
-            $email = $params->get('mail');
+            
+            $contenu = $request->getContent();
+            $obj = json_decode($contenu); 
+            $email = $obj->mail;
             $mdp = $userPasswordHasher->hashPassword(
                 $user,
-                $params->get('password')
+                $obj->password
             );
-            $nom = $params->get('nom');
-            $prenom = $params->get('prenom');
+          
+            $nom = $obj->nom;
+            $prenom = $obj->prenom;
 
             $user->setEmail($email);
             $user->setPassword($mdp);
