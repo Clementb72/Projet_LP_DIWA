@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Alert } from "react-bootstrap";
+
 import "../../public/style/registration.scss";
 
 function Registration() {
@@ -40,7 +41,12 @@ function Registration() {
   };
 
   const submit = (event) => {
+
     event.preventDefault();
+
+    setShow(false);
+    setValidForm(false);
+
     if (state.password === state.mdpOk) {
       if (state.check) {
         setCheckIsValid(true);

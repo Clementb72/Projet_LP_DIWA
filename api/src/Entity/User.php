@@ -52,16 +52,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $prenom;
 
-    /**
-     * @ORM\Column(type="date")
-     */
-    private $dateDeNaissance;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $telephone;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -183,30 +173,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPrenom(string $prenom): self
     {
         $this->prenom = $prenom;
-
-        return $this;
-    }
-
-    public function getDateDeNaissance(): ?\DateTimeInterface
-    {
-        return $this->dateDeNaissance;
-    }
-
-    public function setDateDeNaissance(\DateTimeInterface $dateDeNaissance): self
-    {
-        $this->dateDeNaissance = $dateDeNaissance;
-
-        return $this;
-    }
-
-    public function getTelephone(): ?string
-    {
-        return $this->telephone;
-    }
-
-    public function setTelephone(string $telephone): self
-    {
-        $this->telephone = $telephone;
 
         return $this;
     }

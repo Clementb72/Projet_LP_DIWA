@@ -47,7 +47,6 @@ class RegistrationController extends AbstractController
     {
         try{
             $user = new User();
-            $params = $request->request;
             
             $contenu = $request->getContent();
             $obj = json_decode($contenu); 
@@ -59,15 +58,11 @@ class RegistrationController extends AbstractController
           
             $nom = $obj->nom;
             $prenom = $obj->prenom;
-            $dateDeNaissance = $obj->dateDeNaissance;
-            $telephone = $obj->telephone;
 
             $user->setEmail($email);
             $user->setPassword($mdp);
             $user->setPrenom($prenom);
             $user->setNom($nom);
-            $user->setDateDeNaissance($dateDeNaissance);
-            $user->setTelephone($telephone);
 
             $entityManager->persist($user);
             $entityManager->flush();
