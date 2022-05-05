@@ -6,8 +6,6 @@ import { Col, Container, Button, Figure, Row } from "react-bootstrap";
 import {Link} from 'react-router-dom';
 
 function Home() {
-  console.log(wys_app);
-
   return (
     <div>
       <img src={wys_app} alt="image_home" className="WYSLogo"></img>

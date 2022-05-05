@@ -13,11 +13,11 @@ use App\Repository\PartieRepository;
 use App\Entity\Partie;
 use App\Entity\TypePartie;
 use App\Entity\User;
+use App\Services\UserService;
 use DateTime;
 use Exception;
 use Symfony\Component\Serializer\Exception\NotEncodableValueException;
 use Symfony\Component\Serializer\Exception\NotNormalizableValueException;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 
 
@@ -52,27 +52,18 @@ class PartieController extends AbstractController
     public function create(
         EntityManagerInterface $entityManager,
         Request $request,
-        FlashBagInterface $flashbag
+        FlashBagInterface $flashbag,
+        UserService $userService
     ) {
         try {
             $params = $request->request;
             $type_partie = $params->get('type_partie');
             $date_partie = new DateTime('now');
             $reponses = $params->get('reponses');
-            $users = $params->get('users');
-            $tab_users = [];
-
-            if(gettype($users) == "string"){
-                array_push($tab_users, $users);
-            }
-            else{
-                return new Response("Erreur lors de l'enregistrement des utilisateurs", Response::HTTP_BAD_REQUEST);
-            }
+            $userId = $params->get('users');
 
             $reponses = json_decode($reponses);
             // $entityManager->persist($partie);
-
-
 
             $partie = new Partie();
 
@@ -84,29 +75,13 @@ class PartieController extends AbstractController
 
             $partie->setTypePartie($type_partie);
             $partie->setDatePartie($date_partie);
+            $partie->setUser($userService->getUser($userId));
 
             $json_responses = json_encode($reponses);
 
             $json = json_decode($json_responses, true);
 
             $minOne = true;
-
-
-            foreach ($tab_users as $user_id) {
-                $user = $entityManager->getRepository(User::class)->findOneBy(["id" => $user_id]);
-                if (!is_null($user)) {
-                    try {
-                        for ($i = 1; $i < 10; $i++) {
-                            defined($reponses->{$user_id}->{'question' . $i});
-                        }
-                        $partie->addUser($user);
-                    } catch (Exception $e) {
-                        $flashbag->add('error', "Erreur : Une question est manquante");
-                    }
-                } else {
-                    $minOne = false;
-                }
-            }
             
             $partie->setReponses($json);
 
