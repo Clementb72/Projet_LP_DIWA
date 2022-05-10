@@ -35,14 +35,17 @@ function SelectGame() {
         <div className="parcours__Card" onClick={(e) => chooseMode("SR")}>
           <h3>Rétroaction</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dapibus nulla in lacus blandit lacinia. Nunc pharetra, est sit amet lobortis ultricies, sem lectus convallis elit, eget varius erat leo non ex.</p>
+          <p className="selectGM" onClick={(e) => chooseMode("SR")}>Choisir</p>
         </div>
         <div className="parcours__Card" onClick={(e) => chooseMode("SI")}>
           <h3>Immersion</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dapibus nulla in lacus blandit lacinia. Nunc pharetra, est sit amet lobortis ultricies, sem lectus convallis elit, eget varius erat leo non ex.</p>
+          <p className="selectGM" onClick={(e) => chooseMode("SI")}>Choisir</p>
         </div>
         <div className="parcours__Card" onClick={(e) => chooseMode("SC")}>
           <h3>Conquête</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dapibus nulla in lacus blandit lacinia. Nunc pharetra, est sit amet lobortis ultricies, sem lectus convallis elit, eget varius erat leo non ex.</p>
+          <p className="selectGM" onClick={(e) => chooseMode("SC")}>Choisir</p>
         </div>
         </div>
       <Link to="/formulaire" className="buttonValider" state={{idTypePartie: idTypePartie}}>
