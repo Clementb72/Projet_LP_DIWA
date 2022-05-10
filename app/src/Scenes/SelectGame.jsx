@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import RootStore from '../RootStore.jsx';
-import { Link } from 'react-router-dom';
+import RootStore from "../RootStore.jsx";
+import { Link } from "react-router-dom";
 
 import Navigation from "../components/Navigation.jsx";
 
@@ -12,7 +12,6 @@ import illu3 from "../../public/Assets/images/illu3.png";
 import "../../public/style/select-game.scss";
 
 function SelectGame() {
-
   const { typePartieManager } = useContext(RootStore);
 
   const [acro, setAcro] = useState("SI");
@@ -32,29 +31,47 @@ function SelectGame() {
       <Navigation />
       <div className="parcoursContainer">
         <div className="parcoursFlex">
-        <div className="parcours__Card" onClick={(e) => chooseMode("SR")}>
-          <h3>Rétroaction</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dapibus nulla in lacus blandit lacinia. Nunc pharetra, est sit amet lobortis ultricies, sem lectus convallis elit, eget varius erat leo non ex.</p>
-          <p className="selectGM" onClick={(e) => chooseMode("SR")}>Choisir</p>
+          <div className="parcours__Card">
+            <h3>Rétroaction</h3>
+            <p>
+              Il s’agit ici de se remémorer un grand moment de fierté. Cette
+              première étape vous permet de découvrir la part du mental qui a
+              compté dans la réalisation d’un événement ou d’une performance qui
+              vous a rendu heureux.
+            </p>
+            <p className="selectGM" onClick={(e) => chooseMode("SR")}>Choisir</p>
+          </div>
+          <div className="parcours__Card">
+            <h3>Immersion</h3>
+            <p>
+              Il s’agit ici de se projeter vers un objectif réel ou non et
+              d’envisager sa progression. Cette partie permet de tester l’envie
+              d’entreprendre une nouvelle démarche de progression, ou simplement
+              de s’amuser.
+            </p>
+            <p className="selectGM" onClick={(e) => chooseMode("SI")}>Choisir</p>
+          </div>
+          <div className="parcours__Card">
+            <h3>Conquête</h3>
+            <p>
+              Il s’agit ici de définir un objectif personnel (si 1 joueur) ou
+              commun (si plusieurs joueurs). Cette partie agit comme un
+              révélateur d’engagement et consiste, pour le ou les joueurs, à
+              construire un plan d’action concret.
+            </p>
+            <p className="selectGM" onClick={(e) => chooseMode("SC")}>Choisir</p>
+          </div>
         </div>
-        <div className="parcours__Card" onClick={(e) => chooseMode("SI")}>
-          <h3>Immersion</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dapibus nulla in lacus blandit lacinia. Nunc pharetra, est sit amet lobortis ultricies, sem lectus convallis elit, eget varius erat leo non ex.</p>
-          <p className="selectGM" onClick={(e) => chooseMode("SI")}>Choisir</p>
-        </div>
-        <div className="parcours__Card" onClick={(e) => chooseMode("SC")}>
-          <h3>Conquête</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dapibus nulla in lacus blandit lacinia. Nunc pharetra, est sit amet lobortis ultricies, sem lectus convallis elit, eget varius erat leo non ex.</p>
-          <p className="selectGM" onClick={(e) => chooseMode("SC")}>Choisir</p>
-        </div>
-        </div>
-      <Link to="/formulaire" className="buttonValider" state={{idTypePartie: idTypePartie}}>
+        <Link
+          to="/formulaire"
+          className="buttonValider"
+          state={{ idTypePartie: idTypePartie }}
+        >
           Commencer l'aventure !
-      </Link>
+        </Link>
       </div>
     </div>
   );
-
 }
 
 export default SelectGame;
