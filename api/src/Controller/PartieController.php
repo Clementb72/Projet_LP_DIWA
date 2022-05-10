@@ -61,8 +61,10 @@ class PartieController extends AbstractController
             $date_partie = new DateTime('now');
             $reponses = $params->get('reponses');
             $userId = $params->get('users');
+            $debriefing = $params->get('debriefing');
 
             $reponses = json_decode($reponses);
+            $debriefing = json_decode($debriefing);
             // $entityManager->persist($partie);
 
             $partie = new Partie();
@@ -76,14 +78,17 @@ class PartieController extends AbstractController
             $partie->setTypePartie($type_partie);
             $partie->setDatePartie($date_partie);
             $partie->setUser($userService->getUser($userId));
-
+            
             $json_responses = json_encode($reponses);
-
+            $json_debriefing = json_encode($debriefing);
+            
             $json = json_decode($json_responses, true);
-
+            $json_debrief = json_decode($json_debriefing, true);
+            
             $minOne = true;
             
             $partie->setReponses($json);
+            $partie->setDebriefing($json_debrief);
 
             try {
                 if ($minOne) {        
