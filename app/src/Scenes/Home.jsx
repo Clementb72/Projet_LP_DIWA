@@ -36,10 +36,11 @@ function Home() {
           </Col>
         </Row>
       </Container>
-      <a href="#lowScroll" className="homeCMore">Voir plus<br/>v</a>
+      <a href="#about" className="homeCMore">Voir plus<br/>v</a>
     </div>
 
-      <div className="homeLower" id="lowScroll">
+      <div className="homeLower" id="about">
+        <h2 className="h2Caption">Pourquoi <span className="boldCaption">Wys App ?</span></h2>
         <section className="flexCards">
       <div className="homeCards">
             <h4 className="cardTitle">S'améliorer</h4>
