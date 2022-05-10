@@ -26,11 +26,11 @@ const Profil = () => {
     });
 
 
-    // useEffect(() => {
-    //     // Sécurité si pas connecté
-    //     if (null === userManager.user)
-    //         navigate("/login");    
-    // }, []);
+    useEffect(() => {
+        // Sécurité si pas connecté
+        if (null === userManager.user)
+            navigate("/login");    
+    }, []);
 
     const handleChange = (event) => {
         /* <input type="text" name="prenom" placeholder="Prénom" pattern="^[A-Z][a-z]*|^[a-z]*" required=""> correspond a une target*/
