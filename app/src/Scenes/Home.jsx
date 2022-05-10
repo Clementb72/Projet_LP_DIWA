@@ -40,6 +40,14 @@ function Home() {
     </div>
 
       <div className="homeLower" id="lowScroll">
+        <section className="flexCards">
+      <div className="homeCards">
+            <h4 className="cardTitle">S'améliorer</h4>
+            <img src={pic}/>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dapibus nulla in lacus blandit lacinia. Nunc pharetra, est sit amet lobortis ultricies, sem lectus convallis elit, eget varius erat leo non ex. </p>
+            <a href="https://winyourstar.com/">En savoir plus &#8599;</a>
+          </div>
+          </section>
         <h2 className="h2Caption">Pourquoi <span className="boldCaption">Wys App ?</span></h2>
         <section className="flexCards">
           <div className="homeCards">

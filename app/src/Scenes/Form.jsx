@@ -79,7 +79,7 @@ function Form() {
             setNbQuestion(nbQuestion + 1)
         }else{
             partieManager.savePartie(partieManager.buildPartie(typePartie, answer, userManager.user))
-            navigate("/debriefing")
+            navigate("/fin")
         }
     }
 

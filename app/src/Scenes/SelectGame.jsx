@@ -31,7 +31,7 @@ function SelectGame() {
       <Navigation />
       <div className="parcoursContainer">
         <div className="parcoursFlex">
-          <div className="parcours__Card" onClick={(e) => chooseMode("SR")}>
+          <div className="parcours__Card">
             <h3>Rétroaction</h3>
             <p>
               Il s’agit ici de se remémorer un grand moment de fierté. Cette
@@ -39,8 +39,9 @@ function SelectGame() {
               compté dans la réalisation d’un événement ou d’une performance qui
               vous a rendu heureux.
             </p>
+            <p className="selectGM" onClick={(e) => chooseMode("SR")}>Choisir</p>
           </div>
-          <div className="parcours__Card" onClick={(e) => chooseMode("SI")}>
+          <div className="parcours__Card">
             <h3>Immersion</h3>
             <p>
               Il s’agit ici de se projeter vers un objectif réel ou non et
@@ -48,8 +49,9 @@ function SelectGame() {
               d’entreprendre une nouvelle démarche de progression, ou simplement
               de s’amuser.
             </p>
+            <p className="selectGM" onClick={(e) => chooseMode("SI")}>Choisir</p>
           </div>
-          <div className="parcours__Card" onClick={(e) => chooseMode("SC")}>
+          <div className="parcours__Card">
             <h3>Conquête</h3>
             <p>
               Il s’agit ici de définir un objectif personnel (si 1 joueur) ou
@@ -57,6 +59,7 @@ function SelectGame() {
               révélateur d’engagement et consiste, pour le ou les joueurs, à
               construire un plan d’action concret.
             </p>
+            <p className="selectGM" onClick={(e) => chooseMode("SC")}>Choisir</p>
           </div>
         </div>
         <Link
