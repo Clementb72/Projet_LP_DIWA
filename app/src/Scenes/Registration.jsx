@@ -95,6 +95,8 @@ function Registration() {
         ""
       )}
       <form onSubmit={submit}>
+      <div className="inputGroup">
+        <h2>Inscription</h2>
         <input
           type="text"
           name="nom"
@@ -150,18 +152,17 @@ function Registration() {
         <input
           type="password"
           name="mdpOk"
-          placeholder="Confirmation mot de passe :"
+          placeholder="Confirmation"
           onChange={handleChange}
           pattern="^(?=.{10,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$"
           required
         />
-        <div>
-          <label>
-            <input type="checkbox" name="check" onChange={handleChange} />
-            J'ai lu et j'accepte les CGV
-          </label>
+        <label  className="CGV">
+          <input type="checkbox" name="check" onChange={handleChange} />
+          J'ai lu et j'accepte les CGV
+        </label>
         </div>
-        <input type="submit" value="Créer un compte" />
+        <input type="submit" value="Créer un compte" className="btn"/>
       </form>
     </div>
   );
