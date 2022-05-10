@@ -37,7 +37,7 @@ function Home() {
           </Col>
         </Row>
       </Container>
-      <a href="#lowScroll" className="homeCMore">Voir plus<br/>v</a>
+      <a href="#lowScroll" className="homeCMore">Voir plus<br/>&#8595;</a>
     </div>
 
       <div className="homeLower" id="lowScroll">
