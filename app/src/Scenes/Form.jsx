@@ -36,22 +36,22 @@ function Form() {
 
     const [nbQuestion, setNbQuestion] = useState(0);
 
-    useEffect(() => {
-        // Sécurité si pas connecté
-        if (null === userManager.user)
-            navigate("/login");
-        if (null != location.state) {
-            let id = location.state.idTypePartie || 0;
-            let typePartie = typePartieManager.getTypePartieById(id);
-            let temps = typePartie.temps;
-            setIdTypePartie(id);
-            setTypePartie(typePartie);
-            setMode(temps);
-            if (id === 0)
-                navigate("/game"); 
-        } else // Sécurité si user passe par l'url pour accéder à la page sans avoir séléctionné le mode de jeu
-            navigate("/game");            
-    }, []);
+    // useEffect(() => {
+    //     // Sécurité si pas connecté
+    //     if (null === userManager.user)
+    //         navigate("/login");
+    //     if (null != location.state) {
+    //         let id = location.state.idTypePartie || 0;
+    //         let typePartie = typePartieManager.getTypePartieById(id);
+    //         let temps = typePartie.temps;
+    //         setIdTypePartie(id);
+    //         setTypePartie(typePartie);
+    //         setMode(temps);
+    //         if (id === 0)
+    //             navigate("/game"); 
+    //     } else // Sécurité si user passe par l'url pour accéder à la page sans avoir séléctionné le mode de jeu
+    //         navigate("/game");            
+    // }, []);
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -192,7 +192,7 @@ function Form() {
                             </div>
                         </div>
                         <div className="satisfaction">
-                            <p>Satisfaction</p>
+                            <p>Intensité</p>
                             <Radio.Group value={answer[nbQuestion].satisfaction} onChange={(e) => changeSatisfaction(e.target.value)} buttonStyle="solid" className="radio-group">
                                 <Radio.Button value="---">---</Radio.Button>
                                 <Radio.Button value="--">--</Radio.Button>
