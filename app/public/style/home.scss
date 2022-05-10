@@ -75,7 +75,6 @@ div.col {
 }
 
 .homeUpper {
-  height: 110vh;
   position: relative;
 }
 
@@ -112,11 +111,7 @@ div.col {
 }
 
 .btnCont {
-  position: absolute;
-  bottom: 25%;
-  left: 50%;
-  transform: translateX(-50%);
-
+  margin-top: -50px;
   h3 {
     color: white;
   }
@@ -126,16 +121,13 @@ div.col {
   margin-top: 50px;
   text-decoration: none;
   color: white;
-  position: absolute;
-  bottom: 20%;
-  left: 50%;
-  transform: translateX(-50%);
 }
 
 .homeLower {
   background-color: #fff;
   width: 100%;
   position: relative;
+  margin-top: 100px;
 
   &:before {
     content: " ";

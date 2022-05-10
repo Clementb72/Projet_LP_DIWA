@@ -24,6 +24,50 @@
 
 /* Main */
 
+/* Menu */
+.subMenu {
+    position: absolute;
+    background-color: #EDEBEB;
+    top: 15px;
+    right: 15px;
+    padding: 20px 30px;
+    width: 20%;
+    border-radius: 25px;
+    z-index: 5;
+    .closeMenu {
+        color: #595959;
+        width: fit-content;
+        position: absolute;
+        margin: 0;
+        right: 15px;
+        top: 10px;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    .subLogo {
+        display: block;
+        height: 70px;
+        width: 70px;
+        margin: 0 auto;
+        margin-bottom: 20px;
+    }
+    a {
+        background-color: #458bc9;
+        padding: 10px 20px;
+        border-radius: 50px;
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+        transition:  all 0.5s;
+        &:hover {
+            color: #fff;
+            background-color: #3272aa;
+        }
+    }
+}
+/* Menu */
+
 .container {
     padding: 7vw;
 
@@ -365,3 +409,59 @@
 }
 
 /* CONNECTION FORM */
+.reviewTitle {
+    color: white;
+    padding: 15px 0;
+}
+.review {
+    width: 90%;
+    margin: 0 auto;
+.answerBlock {
+    padding:0 25px 25px;
+    border-radius: 50px;
+    .answerFlex {
+        display: flex;
+        justify-content: space-around;
+        div {
+            background-color: #fff;
+            width:25%;
+            padding: 15px;
+            border-radius: 25px;
+            p {
+                color: #595959;
+                text-align:left;
+            }
+            .questionTitle {
+                padding: 10px;
+                font-size: 20px;
+                border-radius: 50px;
+                color: white;
+                background-color: #458bc9;
+                text-align:center;
+            }
+        }
+    }
+    h3 {
+        margin: 30px 0;
+        text-align: left;
+        color: #fff;
+    }
+}
+    
+}
+.sendResult  {
+    width: fit-content;
+    padding: 10px 20px;
+    border: none;
+    background-color: #0C5788;
+    color: white;
+    border-radius: 50px;
+    margin: 30px 0 30px;
+    transition: all 0.5s;
+    font-size: 20px;
+    &:hover {
+        background-color: #fff;
+        cursor: pointer;
+        color: #458bc9;
+    }
+}
