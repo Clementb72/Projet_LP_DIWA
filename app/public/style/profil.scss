@@ -1,0 +1,81 @@
+.profil-container {
+    height: 100vh;
+    position: relative;
+    background-image: url(../../public/Assets/images/bg.jpg);
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .main-container {
+        background-color: #192e4e;
+        border-radius: 20px;
+        padding: 15px;
+        color: #fff;
+
+        h1 {
+            color: white;
+        }
+
+        .content-form {
+            background-color: #0c5788;
+            border-radius: 20px;
+            padding: 20px;
+
+            .profil-info {
+                text-align: left;
+                label {
+                    font-size: 18px;
+                }
+
+                input {
+                    color: white;                   
+                    width: 100%;
+                    border-radius: 5px;
+                    background-color: rgba(255, 255, 255, 0.2);
+
+                    &::placeholder {
+                        color: rgba(255, 255, 255, 0.7);
+                    }
+                }
+
+                & + .profil-info {
+                    margin-top: 10px;
+                }
+            }
+        }
+
+        .btn {
+            width: 180px;
+            padding: 10px 20px;
+            border: none;
+            color: white;
+            border-radius: 50px;
+            margin: 15px 0 0;
+            transition: all 0.5s;
+            font-size: 20px;
+            text-align: center;
+            cursor: pointer;
+
+            &-update {
+                background-color: #0c5788;
+                &:hover {
+                    background-color: #0b4fa2;
+                }
+            }
+
+            &-cancel {
+                background-color: #84acc7;
+                margin-right: 30px;
+                &:hover {
+                    background-color: #6c9fc1;
+                }
+            }
+        }
+    }
+}
+
+input:required:invalid,
+input:focus:invalid {
+    border-color: transparent;
+}
