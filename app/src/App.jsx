@@ -8,6 +8,7 @@ import LoginForm from './Scenes/LoginForm.jsx';
 import { Routes, Route } from 'react-router-dom';
 import Debriefing from './Scenes/Debriefing.jsx';
 import Registration from './Scenes/Registration.jsx';
+import Profil from './Scenes/Profil.jsx';
 
 import '../public/style/App.scss';
 import '../public/style/style.scss';
@@ -23,6 +24,7 @@ function App() {
                     <Route path='/login' element={<LoginForm/>}/>
                     <Route path='/formulaire' element={<Form/>}/>
                     <Route path='/debriefing' element={<Debriefing/>}/>
+                    <Route path='/profil' element={<Profil/>}/>
                 </Routes>
             </div>
         </RootStore.Provider>
