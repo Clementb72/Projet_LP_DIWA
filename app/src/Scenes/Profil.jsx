@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import RootStore from '../RootStore.jsx';
+import { Alert } from "react-bootstrap";
+import axios from "axios";
+
 
 import { useNavigate } from "react-router-dom";
 
@@ -17,19 +20,18 @@ const Profil = () => {
     const [isPwdValid, setPwdIsValid] = useState(true);
     const [isEditable, setEditable] = useState(false);
     const [state, setState] = useState({
-        nom: "",
-        prenom: "",
-        email: "",
+        nom: userManager.user.nom,
+        prenom: userManager.user.prenom,
+        email: userManager.user.email,
         password: "",
         mdpOk: "",
         check: false,
     });
 
-
     useEffect(() => {
         // Sécurité si pas connecté
         if (null === userManager.user)
-            navigate("/login");    
+            navigate("/login");
     }, []);
 
     const handleChange = (event) => {
@@ -62,24 +64,23 @@ const Profil = () => {
         setValidForm(false);
 
         if (state.password === state.mdpOk) {
-            if (state.check) {
-                setCheckIsValid(true);
-                axios
-                    .post("http://127.0.0.1:8080/api/updateProfil", {
-                        nom: state.nom,
-                        prenom: state.prenom,
-                        mail: state.email,
-                        password: state.password,
-                    })
-                    .then((response) => {
-                        console.log(response);
-                        setValidForm(true);
-                    })
-                    .catch((error) => {
-                        setShow(true);
-                        console.error(error);
-                    });
-            }
+            setCheckIsValid(true);
+            axios
+                .post("http://127.0.0.1:8080/api/updateProfil", {
+                    id: userManager.user.id,
+                    nom: state.nom,
+                    prenom: state.prenom,
+                    mail: state.email,
+                    password: state.password,
+                })
+                .then((response) => {
+                    console.log(response);
+                    setValidForm(true);
+                })
+                .catch((error) => {
+                    setShow(true);
+                    console.error(error);
+                });
         }
     };
 
@@ -121,9 +122,11 @@ const Profil = () => {
                                     type="text"
                                     name="nom"
                                     placeholder="Nom"
+                                    defaultValue={state.nom}
                                     value={state.value}
                                     pattern="^[A-Z][a-z]*|^[a-z]*"
                                     onChange={handleChange}
+                                    disabled={!isEditable}
                                     title=""
                                     onInvalid={(e) =>
                                         e.target.setCustomValidity(
@@ -140,6 +143,9 @@ const Profil = () => {
                                     type="text"
                                     name="prenom"
                                     placeholder="Prénom"
+                                    defaultValue={state.prenom}
+                                    disabled={!isEditable}
+                                    value={state.value}
                                     onChange={handleChange}
                                     pattern="^[A-Z][a-z]*|^[a-z]*"
                                     onInvalid={(e) =>
@@ -156,6 +162,9 @@ const Profil = () => {
                                 <input
                                     type="email"
                                     name="email"
+                                    defaultValue={state.email}
+                                    value={state.value}
+                                    disabled={!isEditable}
                                     placeholder="Email"
                                     onChange={handleChange}
                                     required
@@ -166,8 +175,10 @@ const Profil = () => {
                                 <input
                                     type="password"
                                     name="password"
+                                    value={state.value}
                                     placeholder="Mot de passe"
                                     onChange={handleChange}
+                                    disabled={!isEditable}
                                     pattern="^(?=.{10,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$"
                                     onInvalid={(e) =>
                                         e.target.setCustomValidity(
@@ -184,6 +195,8 @@ const Profil = () => {
                                     <input
                                         type="password"
                                         name="mdpOk"
+                                        value={state.value}
+                                        disabled={!isEditable}
                                         placeholder="Confirmation mot de passe :"
                                         onChange={handleChange}
                                         pattern="^(?=.{10,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$"
@@ -195,11 +208,11 @@ const Profil = () => {
                         {
                             isEditable ? (
                                 <>
-                                    <input onClick={() => setEditable(false)} className="btn btn-cancel" value="Annuler" />
-                                    <input onClick={() => setEditable(false)} className="btn btn-update" type="submit" value="Valider" />
+                                    <button onClick={() => setEditable(false)} className="btn btn-cancel">Annuler</button>
+                                    <button className="btn btn-update" type="submit">Modifier</button>
                                 </>
                             ) : (
-                                <input onClick={() => setEditable(true)} className="btn btn-update" value="Modifier" />
+                                <button onClick={() => setEditable(true)} className="btn btn-update">Valider</button>
                             )
 
                         }

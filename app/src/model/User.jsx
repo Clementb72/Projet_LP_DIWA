@@ -31,6 +31,10 @@ class User {
         return this._nom;
     }
 
+    get prenom() {
+        return this._prenom;
+    }
+
     get email() {
         return this._email;
     }
