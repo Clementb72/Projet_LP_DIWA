@@ -130,14 +130,14 @@
 
     .question {
         margin-bottom: 0;
-        margin-left: 20px;
+        margin-left: 10px;
         font-size: 25px;
         font-weight: bold;
         color: white;
     }
 
     img {
-        width: 50px;
+        width: 70px;
         cursor: pointer;
     }
 }
@@ -193,17 +193,6 @@
     filter: drop-shadow(0 0 0.75rem white);
 }
 
-.reponse label::after,
-.adjectif p::after {
-    position: absolute;
-    content: "";
-    bottom: -4px;
-    left: 0;
-    width: 50px;
-    height: 2px;
-    background-color: rgb(255, 255, 255);
-}
-
 .input-answer {
     border: none;
     padding: 20px;
@@ -250,7 +239,7 @@
 
 .button-tag {
     width: 95%;
-    margin: auto;
+    margin-left: 30px;
     margin-top: 15px;
     display: flex;
     align-items: center;

@@ -10,7 +10,7 @@ import Ressources from '../components/Ressources.jsx';
 // Images
 import fuse from '../../public/Assets/images/fuse2.svg';
 import rocket from '../../public/Assets/images/chevron-droit.png';
-import but from '../../public/Assets/images/but.png';
+import but from '../../public/Assets/images/Game_Fusee.svg';
 import imgRessources from '../../public/Assets/images/Game_Ressources.svg';
 import imgBesoins from '../../public/Assets/images/Game_Besoin.svg';
 import imgAffect from '../../public/Assets/images/Game_Affect.svg';
@@ -33,6 +33,23 @@ function Form() {
     const [mode, setMode] = useState(typePartie.temps);
 
     const [answer, setAnswer] = useState(partieManager.initPartie());
+
+    const answerObjectif = (mode) => {
+        switch (mode) {
+            case "present": {
+                return "Quel est votre objectif ?";
+            }
+            case "futur": {
+                return "Quel va être votre objectif ?";
+            }
+            case "passe": {
+                return "Quel a été votre objectif ?";
+            }
+            default: {
+                return "Quel est votre objectif ?";
+            }
+        }
+    }
 
     const [nbQuestion, setNbQuestion] = useState(0);
 
@@ -112,8 +129,8 @@ function Form() {
                 <div className="bar bg-white-transparent border-radius-25">
                     <StepBar current={nbQuestion} />
                 </div>
-                <div onClick={nextPage} className={`container-arrow ${questions[mode].length === nbQuestion + 1 ? 'disabled' : ''}`}>
-                    <p>Question suivante</p>
+                <div onClick={nextPage} className={`container-arrow`}>
+                    {questions[mode].length === nbQuestion + 1 ? <p>Debriefing</p> : <p>Question suivante</p>}
                     <img className="arrow-right" src={rocket} alt="rocket"></img>
                 </div>
             </div>
@@ -126,7 +143,7 @@ function Form() {
                             <Modal.Title>Objectif</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            <label htmlFor="objectif">Quel est votre objectif ?</label>
+                            <label htmlFor="objectif">{answerObjectif()}</label>
                             <input value={objectif} onChange={(e) => setObjectif(e.target.value)} type="text" name="objectif" />
                         </Modal.Body>
                         <Modal.Footer>
