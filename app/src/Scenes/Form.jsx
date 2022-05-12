@@ -34,21 +34,10 @@ function Form() {
 
     const [answer, setAnswer] = useState(partieManager.initPartie());
 
-    const answerObjectif = (mode) => {
-        switch (mode) {
-            case "present": {
-                return "Quel est votre objectif ?";
-            }
-            case "future": {
-                return "Quel sera votre objectif ?";
-            }
-            case "past": {
-                return "Quel était votre objectif ?";
-            }
-            default: {
-                return "Quel est votre objectif ?";
-            }
-        }
+    const answerObjectif = {
+        "present": "Quel est votre objectif ?",
+        "future": "Quel sera votre objectif ?",
+        "past": "Quel était votre objectif ?"
     }
 
     const [nbQuestion, setNbQuestion] = useState(0);
@@ -143,7 +132,7 @@ function Form() {
                             <Modal.Title>Objectif</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            <label htmlFor="objectif">{answerObjectif()}</label>
+                            <label htmlFor="objectif">{answerObjectif[mode]}</label>
                             <input value={objectif} onChange={(e) => setObjectif(e.target.value)} type="text" name="objectif" />
                         </Modal.Body>
                         <Modal.Footer>
@@ -170,11 +159,11 @@ function Form() {
                             </div>
                             <div className="button-tag">
                                 <p>Aides :</p>
-                                <Button variant="primary" onClick={handleShowBesoins}>
+                                <Button variant="primary" onClick={handleShowAffects}>
                                     <img src={imgAffect} alt="Affect" />
                                     <p>Affect</p>
                                 </Button>
-                                <Button variant="primary" onClick={handleShowAffects}>
+                                <Button variant="primary" onClick={handleShowBesoins}>
                                     <img src={imgBesoins} alt="Besoins" />
                                     <p>Besoins</p>
                                 </Button>
