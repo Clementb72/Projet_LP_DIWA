@@ -65,6 +65,14 @@ services:
       - 127.0.0.1:8888:80
     restart: always
 
+  maildev:
+    container_name: maildev_wys
+    image: maildev/maildev
+    ports:
+      - "1080:80"
+    restart: always
+    command: bin/maildev --web 80 --smtp 25 --hide-extensions STARTTLS
+
 volumes:
   nodemodules: {}
   api-vendor:
