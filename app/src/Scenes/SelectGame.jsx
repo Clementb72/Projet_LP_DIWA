@@ -14,7 +14,7 @@ import "../../public/style/select-game.scss";
 function SelectGame() {
   const { typePartieManager } = useContext(RootStore);
 
-  const [acro, setAcro] = useState("SI");
+  const [acro, setAcro] = useState("");
   const [idTypePartie, setIdTypePartie] = useState();
 
   useEffect(() => {
