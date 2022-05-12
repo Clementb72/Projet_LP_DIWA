@@ -56,7 +56,7 @@ function Registration() {
       if (state.check) {
         setCheckIsValid(true);
         axios
-          .post("http://127.0.0.1:8080/api/register", {
+          .post("/api/register", {
             nom: state.nom,
             prenom: state.prenom,
             mail: state.email,
