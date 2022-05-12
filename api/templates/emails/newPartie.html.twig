@@ -44,7 +44,8 @@
         <div class="email">
             <section class="head">
                 <img class="logo" src="{{ email.image('@images/logo.svg') }}"></img>
-                <span class="span1">Partie réalisé le {{ partie.datePartie|date("d/m/Y") }} par {{ partie.user.prenom }} {{ partie.user.nom }}</span>
+                <span class="span1">Partie réalisé le {{ partie.datePartie|date("d/m/Y") }} par {{ partie.user.prenom }} {{ partie.user.nom }} ({{partie.user.email}})</span>
+                <span class="span1">Objectif : {{ partie.objectif }}</span>
                 <span class="">Mode jeu : {{ partie.typePartie.mode }}</span>
             </section>
             <section class="content">
@@ -62,7 +63,10 @@
                     <span class="intensite">Intensité : {{partie.reponses[index]["satisfaction"]}}</span>
                 {% endfor %}
             </section>
-            <section class=""></section>
+            <section class="footer">
+                <span class="questions">Debriefing :</span>
+                <span class="parole debrief">{{partie.debriefing["choix1"]}}</span>
+            </section>
         </div>
 
     {% endapply %}

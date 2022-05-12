@@ -64,6 +64,7 @@ class PartieController extends AbstractController
             $reponses = $params->get('reponses');
             $userId = $params->get('users');
             $debriefing = $params->get('debriefing');
+            $objectif = $params->get('objectif');
 
             $reponses = json_decode($reponses);
             $debriefing = json_decode($debriefing);
@@ -80,6 +81,7 @@ class PartieController extends AbstractController
             $partie->setTypePartie($type_partie);
             $partie->setDatePartie($date_partie);
             $partie->setUser($userService->getUser($userId));
+            $partie->setObjectif($objectif);
             
             $json_responses = json_encode($reponses);
             $json_debriefing = json_encode($debriefing);

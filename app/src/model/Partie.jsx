@@ -8,8 +8,9 @@ class Partie {
     _reponses;
     _user;
     _debriefing;
+    _objectif;
 
-    constructor(id, typePartie, datePartie, reponses, user, debriefing) {
+    constructor(id, typePartie, datePartie, reponses, user, debriefing, objectif) {
         makeAutoObservable(this);
         this._id = id;
         this._typePartie = typePartie;
@@ -17,6 +18,7 @@ class Partie {
         this._reponses = reponses;
         this._user = user;
         this._debriefing = debriefing;
+        this._objectif = objectif;
     }
 
     get id() {
@@ -41,6 +43,10 @@ class Partie {
 
     get debriefing() {
         return this._debriefing;
+    }
+    
+    get objectif() {
+        return this._objectif;
     }
 
     set debriefing(value) {

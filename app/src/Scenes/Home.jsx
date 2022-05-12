@@ -41,7 +41,6 @@ function Home() {
     </div>
 
       <div className="homeLower" id="about">
-        <h2 className="h2Caption">Pourquoi <span className="boldCaption">Wys App ?</span></h2>
         <section className="flexCards">
       <div className="homeCardPres">
             <p><b>Avant de jouer</b><br/><br/>

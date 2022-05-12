@@ -46,6 +46,11 @@ class Partie
      */
     private $debriefing = [];
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $objectif;
+
     public function __construct()
     {
     }
@@ -111,6 +116,18 @@ class Partie
     public function setDebriefing(array $debriefing): self
     {
         $this->debriefing = $debriefing;
+
+        return $this;
+    }
+
+    public function getObjectif(): ?string
+    {
+        return $this->objectif;
+    }
+
+    public function setObjectif(string $objectif): self
+    {
+        $this->objectif = $objectif;
 
         return $this;
     }

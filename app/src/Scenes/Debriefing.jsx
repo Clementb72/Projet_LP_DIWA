@@ -1,8 +1,12 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import RootStore from '../RootStore.jsx';
 
 
 function Debriefing() {
+
+    const navigate = useNavigate();
+
     const { partieManager } = useContext(RootStore);
 
     let tab = ["Motivation", "Qualité", "Enjeu", "Action", "Moyen", "Indicateur", "Obstacle", "Danger", "Réaction"];
@@ -10,6 +14,7 @@ function Debriefing() {
     const submit = () => {
         partieManager.sendPartie(partieManager.getPartieEnCours()).then(() => {
             console.log("SUBMIT");
+            navigate("/game");
         }).catch(err => {
             console.log(err);
         });

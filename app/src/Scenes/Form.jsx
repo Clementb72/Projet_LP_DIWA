@@ -94,8 +94,8 @@ function Form() {
     const nextPage = () => {
         if (questions[mode].length > nbQuestion + 1){
             setNbQuestion(nbQuestion + 1)
-        }else{
-            partieManager.savePartie(partieManager.buildPartie(typePartie, answer, userManager.user))
+        } else {
+            partieManager.savePartie(partieManager.buildPartie(typePartie, answer, userManager.user, null, objectif))
             navigate("/fin")
         }
     }
