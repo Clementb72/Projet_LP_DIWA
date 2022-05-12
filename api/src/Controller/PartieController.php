@@ -13,6 +13,7 @@ use App\Repository\PartieRepository;
 use App\Entity\Partie;
 use App\Entity\TypePartie;
 use App\Entity\User;
+use App\Services\Interfaces\Services\MailerServiceInterface;
 use App\Services\UserService;
 use DateTime;
 use Exception;
@@ -53,7 +54,8 @@ class PartieController extends AbstractController
         EntityManagerInterface $entityManager,
         Request $request,
         FlashBagInterface $flashbag,
-        UserService $userService
+        UserService $userService,
+        MailerServiceInterface $mailerService
     ) {
         try {
             $params = $request->request;
@@ -84,6 +86,8 @@ class PartieController extends AbstractController
             $minOne = true;
             
             $partie->setReponses($json);
+
+            $mailerService->sendEmail('pierre61250@yahoo.fr', 'Nouvelle Partie', $partie);
 
             try {
                 if ($minOne) {        
