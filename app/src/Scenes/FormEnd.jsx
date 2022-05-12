@@ -11,8 +11,6 @@ function FormEnd() {
 
     const [state, setState] = React.useState({
         choix1: "",
-        choix2: "",
-        choix3: ""
     })
 
     const handleChange = (e) => {
@@ -33,11 +31,9 @@ function FormEnd() {
     return (
         <>
             <h1>Debriefing</h1>
-            <p>Citer 3 mots ( sentiments, émotions ) qui ont marqué votre partie</p>
+            <p>De toute cette expérience, que retiendrez-vous de très positif de vous ? Avez-vous eu de nouvelles prises de conscience ? Si oui, lesquelles ? Quel va être votre premier pas vers l’atteinte de votre objectif ? Quand allez-vous le faire ?</p>
             <form onSubmit={submit}>
                 <input type="text" name="choix1" value={state.choix1} onChange={handleChange} />
-                <input type="text" name="choix2" value={state.choix2} onChange={handleChange} />
-                <input type="text" name="choix3" value={state.choix3} onChange={handleChange} />
                 <input type="submit" value="Valider" />
             </form>
         </>
