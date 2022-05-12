@@ -23,6 +23,18 @@ services:
       retries: 10
       start_period: 20s
 
+  phpmyadmin:
+    container_name: phpmyadmin_wys
+    image: phpmyadmin:5.1
+    env_file:
+      - environment/lemans-proxy.env
+      - environment/prod/phpmyadmin.env
+    volumes:
+      - /sessions
+    ports:
+      - 127.0.0.1:8889:80
+    restart: always
+
   symfony:
     container_name: symfony
     image: fguntz/symfony:2.0
