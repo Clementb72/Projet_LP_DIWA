@@ -31,7 +31,7 @@ function SelectGame() {
       <Navigation />
       <div className="parcoursContainer">
         <div className="parcoursFlex">
-          <div className="parcours__Card">
+          <div className={acro === 'SR' ? "parcours__Card parcours--selected" : "parcours__Card"}>
             <h3>Rétroaction</h3>
             <p>
               Il s’agit ici de se remémorer un grand moment de fierté. Cette
@@ -41,7 +41,7 @@ function SelectGame() {
             </p>
             <p className="selectGM" onClick={(e) => chooseMode("SR")}>Choisir</p>
           </div>
-          <div className="parcours__Card">
+          <div className={acro === 'SI' ? "parcours__Card parcours--selected" : "parcours__Card"}>
             <h3>Immersion</h3>
             <p>
               Il s’agit ici de se projeter vers un objectif réel ou non et
@@ -51,7 +51,7 @@ function SelectGame() {
             </p>
             <p className="selectGM" onClick={(e) => chooseMode("SI")}>Choisir</p>
           </div>
-          <div className="parcours__Card">
+          <div className={acro === 'SC' ? "parcours__Card parcours--selected" : "parcours__Card"}>
             <h3>Conquête</h3>
             <p>
               Il s’agit ici de définir un objectif personnel (si 1 joueur) ou
