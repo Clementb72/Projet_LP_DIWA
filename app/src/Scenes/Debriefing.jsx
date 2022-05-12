@@ -43,8 +43,8 @@ function Debriefing() {
                                 <div className="propulsion" key={index}>
                                     <p className="questionTitle">{tab[index]}</p>
                                     <p> Réponse :<br/>{partie.reponse}<br/></p>
-                                    <p> Satisfaction :<br/>{partie.satisfaction}<br/></p>
-                                    <p> Adjectifs :<br/> {partie.listTags.length > 0 ?
+                                    <p> Intensité :<br/>{partie.satisfaction}<br/></p>
+                                    <p> Aides :<br/> {partie.listTags.length > 0 ?
                                         partie.listTags.map((tag) => {
                                             return (
                                                 tag + ' '
@@ -67,8 +67,8 @@ function Debriefing() {
                                 <div className="expedition" key={index}>
                                     <p className="questionTitle">{tab[index]}</p>
                                     <p> Réponse :<br/> {partie.reponse}<br/></p>
-                                    <p> Satisfaction :<br/>{partie.satisfaction}<br/></p>
-                                    <p> Adjectifs :<br/> {partie.listTags.length > 0 ?
+                                    <p> Intensité :<br/>{partie.satisfaction}<br/></p>
+                                    <p> Aides :<br/> {partie.listTags.length > 0 ?
                                         partie.listTags.map((tag) => {
                                             return (
                                                 tag + ' '
@@ -91,8 +91,8 @@ function Debriefing() {
                                 <div className="exploration" key={index}>
                                     <p className="questionTitle">{tab[index]}</p>
                                     <p> Réponse : <br/>{partie.reponse}<br/></p>
-                                    <p> Satisfaction :<br/>{partie.satisfaction}<br/></p>
-                                    <p> Adjectifs :<br/> {partie.listTags.length > 0 ?
+                                    <p> Intensité :<br/>{partie.satisfaction}<br/></p>
+                                    <p> Aides :<br/> {partie.listTags.length > 0 ?
                                         partie.listTags.map((tag) => {
                                             return (
                                                 tag + ' '

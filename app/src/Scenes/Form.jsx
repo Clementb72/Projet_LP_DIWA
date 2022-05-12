@@ -161,7 +161,7 @@ function Form() {
                                 <p>Aides :</p>
                                 <Button variant="primary" onClick={handleShowAffects}>
                                     <img src={imgAffect} alt="Affect" />
-                                    <p>Affect</p>
+                                    <p>Affects</p>
                                 </Button>
                                 <Button variant="primary" onClick={handleShowBesoins}>
                                     <img src={imgBesoins} alt="Besoins" />
