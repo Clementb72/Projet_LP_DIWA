@@ -150,13 +150,29 @@ div.col {
   padding: 50px 0;
 }
 
+.homeCardPres {
+  background-color: #EDEBEB;
+  padding: 15px;
+  width: 50%;
+  border-radius: 25px;
+  p {
+    color: #595959;
+    b {
+      font-size: 20px;
+    }
+  }
+}
+
 .homeCards {
   background-color: #EDEBEB;
-  width: fit-content;
   padding: 15px;
   width: 20%;
   border-radius: 25px;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 550px;
 
   img {
     width: 100%;

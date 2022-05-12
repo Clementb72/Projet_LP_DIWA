@@ -30,6 +30,7 @@ function FormEnd() {
 
     return (
         <>
+            <form onSubmit={submit} className="formEnd">
             <h1>Debriefing</h1>
             <p>De toute cette expérience, que retiendrez-vous de très positif de vous ? Avez-vous eu de nouvelles prises de conscience ? Si oui, lesquelles ? Quel va être votre premier pas vers l’atteinte de votre objectif ? Quand allez-vous le faire ?</p>
             <form onSubmit={submit}>
