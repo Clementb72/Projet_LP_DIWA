@@ -32,9 +32,9 @@ class PartieManager {
 
     }
 
-    buildPartie(typePartie, reponses, user) {
+    buildPartie(typePartie, reponses, user, debriefing, objectif) {
 
-        return new Partie(null, typePartie, (new Date()).toISOString(), reponses, user)
+        return new Partie(null, typePartie, (new Date()).toISOString(), reponses, user, debriefing, objectif)
 
     }
 
@@ -48,6 +48,8 @@ class PartieManager {
         formData.append('type_partie', partie.typePartie.acro);
         formData.append('reponses', partie.toStringResults());
         formData.append('users', partie.user.id);
+        formData.append('debriefing', partie.toStringDebriefing());
+        formData.append('objectif', partie.objectif);
 
         await axios.post('http://127.0.0.1:8080/api/partie', formData).then(function (response) {
             console.log(response.data)

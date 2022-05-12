@@ -13,6 +13,7 @@ use App\Repository\PartieRepository;
 use App\Entity\Partie;
 use App\Entity\TypePartie;
 use App\Entity\User;
+use App\Services\Interfaces\Services\MailerServiceInterface;
 use App\Services\UserService;
 use DateTime;
 use Exception;
@@ -53,7 +54,8 @@ class PartieController extends AbstractController
         EntityManagerInterface $entityManager,
         Request $request,
         FlashBagInterface $flashbag,
-        UserService $userService
+        UserService $userService,
+        MailerServiceInterface $mailerService
     ) {
         try {
             $params = $request->request;
@@ -61,8 +63,11 @@ class PartieController extends AbstractController
             $date_partie = new DateTime('now');
             $reponses = $params->get('reponses');
             $userId = $params->get('users');
+            $debriefing = $params->get('debriefing');
+            $objectif = $params->get('objectif');
 
             $reponses = json_decode($reponses);
+            $debriefing = json_decode($debriefing);
             // $entityManager->persist($partie);
 
             $partie = new Partie();
@@ -76,14 +81,20 @@ class PartieController extends AbstractController
             $partie->setTypePartie($type_partie);
             $partie->setDatePartie($date_partie);
             $partie->setUser($userService->getUser($userId));
-
+            $partie->setObjectif($objectif);
+            
             $json_responses = json_encode($reponses);
-
+            $json_debriefing = json_encode($debriefing);
+            
             $json = json_decode($json_responses, true);
-
+            $json_debrief = json_decode($json_debriefing, true);
+            
             $minOne = true;
             
             $partie->setReponses($json);
+            $partie->setDebriefing($json_debrief);
+
+            $mailerService->sendEmail('pierre61250@yahoo.fr', 'Nouvelle Partie', $partie);
 
             try {
                 if ($minOne) {        
