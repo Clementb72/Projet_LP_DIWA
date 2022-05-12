@@ -60,6 +60,8 @@
         color: white;
         font-weight: bold;
         transition:  all 0.5s;
+        display: block;
+        margin-bottom: 10px;
         &:hover {
             color: #fff;
             background-color: #3272aa;
