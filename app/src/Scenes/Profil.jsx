@@ -210,10 +210,10 @@ const Profil = () => {
                             isEditable ? (
                                 <>
                                     <button onClick={() => setEditable(false)} className="btn btn-cancel">Annuler</button>
-                                    <button className="btn btn-update" type="submit">Modifier</button>
+                                    <button className="btn btn-update" type="submit">Valider</button>
                                 </>
                             ) : (
-                                <button onClick={() => setEditable(true)} className="btn btn-update">Valider</button>
+                                <button onClick={() => setEditable(true)} className="btn btn-update">Modifier</button>
                             )
 
                         }
