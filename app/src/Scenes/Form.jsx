@@ -119,7 +119,7 @@ function Form() {
             </div>
             <div className="bg-white-transparent border-radius-25 container-2">
                 <div className="container-question bg-white-transparent">
-                    <p className="question">{nbQuestion + 1 + ' - ' + questions[mode][nbQuestion]}</p>
+                    <p className="question">{questions[mode][nbQuestion]}</p>
                     <img onClick={() => setShowObjectif(true)} src={but} alt="objectif" />
                     <Modal className="modal-objectif" size="md" centered show={showObjectif} onHide={() => setShowObjectif(false)}>
                         <Modal.Header closeButton>
