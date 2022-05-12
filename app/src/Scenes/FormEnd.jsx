@@ -33,15 +33,8 @@ function FormEnd() {
             <form onSubmit={submit} className="formEnd">
                 <h1>Debriefing</h1>
                 <p>De toute cette expérience, que retiendrez-vous de très positif de vous ? Avez-vous eu de nouvelles prises de conscience ? Si oui, lesquelles ? Quel va être votre premier pas vers l’atteinte de votre objectif ? Quand allez-vous le faire ?</p>
-<<<<<<< HEAD
                 <input type="text" name="choix1" value={state.choix1} onChange={handleChange} />
-                <input type="submit" value="Valider" />            
-=======
-                <form onSubmit={submit}>
-                    <input type="text" name="choix1" value={state.choix1} onChange={handleChange} />
-                    <input type="submit" value="Valider" />
-                </form>
->>>>>>> 5a2dc75381f924ed0192045572d27c925c7c0970
+                <input type="submit" value="Valider" />
             </form>
         </>
     );
