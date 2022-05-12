@@ -22,7 +22,7 @@ class TypePartieManager {
         if (this._dataLoading)
             return;
             
-        const url = 'http://127.0.0.1:8080/api/typesPartie';
+        const url = '/api/typesPartie';
         this._dataLoading = true;
 
         try {

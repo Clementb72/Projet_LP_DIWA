@@ -67,7 +67,7 @@ const Profil = () => {
         if (state.password === state.mdpOk) {
             setCheckIsValid(true);
             axios
-                .post("http://127.0.0.1:8080/api/updateProfil", {
+                .post("/api/updateProfil", {
                     id: userManager.user.id,
                     nom: state.nom,
                     prenom: state.prenom,

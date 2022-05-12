@@ -51,7 +51,7 @@ class PartieManager {
         formData.append('debriefing', partie.toStringDebriefing());
         formData.append('objectif', partie.objectif);
 
-        await axios.post('http://127.0.0.1:8080/api/partie', formData).then(function (response) {
+        await axios.post('/api/partie', formData).then(function (response) {
             console.log(response.data)
         }).catch(function (error) {
             console.log(error.response.data)
