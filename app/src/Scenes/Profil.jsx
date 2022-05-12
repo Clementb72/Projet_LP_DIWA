@@ -20,14 +20,15 @@ const Profil = () => {
     const [isPwdValid, setPwdIsValid] = useState(true);
     const [isEditable, setEditable] = useState(false);
     const [state, setState] = useState({
-        nom: userManager.user.nom,
-        prenom: userManager.user.prenom,
-        email: userManager.user.email,
+        nom: userManager.user?.nom,
+        prenom: userManager.user?.prenom,
+        email: userManager.user?.email,
         password: "",
         mdpOk: "",
         check: false,
-    });
+    });  
 
+    
     useEffect(() => {
         // Sécurité si pas connecté
         if (null === userManager.user)
