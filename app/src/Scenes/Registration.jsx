@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Alert } from "react-bootstrap";
+import { useLocation, useNavigate } from "react-router-dom";
+
 
 import "../../public/style/registration.scss";
 
 function Registration() {
+
+  const navigate = useNavigate();
+
   const [show, setShow] = useState(false);
   const [isValidForm, setValidForm] = useState(false);
   const [isCheckValid, setCheckIsValid] = useState(true);
@@ -60,6 +65,7 @@ function Registration() {
           .then((response) => {
             console.log(response);
             setValidForm(true);
+            navigate("/login");
           })
           .catch((error) => {
             setShow(true);
@@ -95,6 +101,8 @@ function Registration() {
         ""
       )}
       <form onSubmit={submit}>
+      <div className="inputGroup">
+        <h2>Inscription</h2>
         <input
           type="text"
           name="nom"
@@ -138,10 +146,10 @@ function Registration() {
           name="password"
           placeholder="Mot de passe"
           onChange={handleChange}
-          pattern="^(?=.{10,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$"
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
           onInvalid={(e) =>
             e.target.setCustomValidity(
-              "Le mot de passe doit contenir au moins 1 chiffre, 1 majuscule, 1 caractère spécial"
+              "Le mot de passe doit contenir au moins 1 chiffre, 1 majuscule, 1 caractère spécial et 8 caractères minimum"
             )
           }
           onInput={(e) => e.target.setCustomValidity("")}
@@ -150,18 +158,17 @@ function Registration() {
         <input
           type="password"
           name="mdpOk"
-          placeholder="Confirmation mot de passe :"
+          placeholder="Confirmation"
           onChange={handleChange}
-          pattern="^(?=.{10,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$"
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
           required
         />
-        <div>
-          <label>
-            <input type="checkbox" name="check" onChange={handleChange} />
-            J'ai lu et j'accepte les CGV
-          </label>
+        <label  className="CGV">
+          <input type="checkbox" name="check" onChange={handleChange} />
+          J'ai lu et j'accepte les CGU
+        </label>
         </div>
-        <input type="submit" value="Créer un compte" />
+        <input type="submit" value="Créer un compte" className="btn"/>
       </form>
     </div>
   );

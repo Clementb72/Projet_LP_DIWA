@@ -1,35 +1,35 @@
 {
-  	"present": [
-    	"Qu’est ce qui est stimulant pour vous pour atteindre l’objectif ?",
-   	"Quelles qualités vous sont nécessaires pour l’atteinte de l’objectif ?",
-		"Au fond de vous, qu’est-ce que vous souhaitez vraiment à travers cet objectif ?",
-		"Qu’est-ce que vous avez envie de faire pour le projet ?",
-		"Quels moyens techniques, humains pouvez-vous mobiliser pour atteindre l’objectif ?",
-		"Concernant les indicateurs, à quoi savez-vous que vous avancez vers vos objectifs ?",
-		"Quel est le principal obstacle qui vous empêche d’avancer ?",
-		"Face à cet obstacle, quel danger percevez-vous ? et quelle émotion ressentez-vous ? ",
-		"Quelle réaction positive mettez-vous en place pour surmonter l’obstacle ?"
-  	],
-  	"past": [
-		"Qu’est ce qui a été stimulant pour vous pour atteindre l’objectif ?",
-		"Quelles qualités vous ont été nécessaires pour l’atteinte de l’objectif ?",
-		"Au fond de vous, que recherchiez-vous à travers cet objectif ?",
-		"Qu’est-ce que vous aviez envie de faire pour le projet ?",
-		"Quels moyens techniques, humains avez-vous mobilisés pour atteindre l’objectif ?",
-		"Concernant les indicateurs, à quoi saviez-vous que vous avanciez vers vos objectifs ?",
-		"Quel a été le principal obstacle qui vous a empêché d’avancer ?",
-		"Face à cet obstacle, quel danger perceviez-vous ? et quelle émotion ressentiez-vous ? ",
-		"Quelle a été la réaction positive mise en place pour surmonter l’obstacle ?"
-  	],
-  	"future": [
-      "Qu’est ce qui sera stimulant pour vous pour atteindre l’objectif ?",
-     	"Quelles qualités vous seront nécessaires pour l’atteinte de l’objectif ?",
-     	"Au fond de vous, qu’est-ce que vous souhaiterez vraiment à travers cet objectif ?",
-      "Qu’est-ce que vous aurez envie de faire pour le projet ?",
-      "Quels moyens techniques, humains mobiliserez-vous pour atteindre l’objectif ?",
-    	"Concernant les indicateurs, à quoi savez vous que vous avancer vers vos objectifs ?",
-     	"Quel est le principal obstacle qui vous empêche d’avancer ?",
-      "Face à cet obstacle, quel danger percevez vous ? et dans quelle émotion ça vous mets ? ",
-      "Quelle est la réaction positive pour surmonter l’obstacle ?"
-  	]
+  "past": [
+    "Motivation - Qu’est-ce qui était stimulant dans l’atteinte de cet objectif ? Quelles émotions et quelles sensations ressentez-vous, dans votre corps, lorsque vous êtes motivé ?",
+    "Qualité - De quelles qualités avez-vous fait preuve pour atteindre cet objectif ?",
+    "Enjeu - Au fond de vous, que vouliez-vous d’autre à travers l’atteinte de cet objectif ?",
+    "Action - Quelles actions avez-vous très bien réalisées qui vous ont permis d’atteindre cet objectif ?",
+    "Moyen - Quels moyens techniques, humains avez-vous mobilisé pour atteindre cet objectif ?",
+    "Indicateur - Quels sont les signaux qui vous ont permis de savoir que l’objectif était atteint ? Quelles émotions et quelles sensations avez-vous ressenties ?",
+    "Obstacle - Quel a été le principal obstacle ? Quelles émotions et quelles sensations avez-vous ressenti immédiatement ?",
+    "Danger - Face à cet obstacle, quel danger perceviez-vous ? Quelles émotions et quelles sensations avez-vous ressenties face à ce danger ?",
+    "Réaction - Quelle a été votre réaction pour surmonter cet obstacle ? Quelles émotions et quelles sensations avez-vous ressenties après votre réaction ?"
+  ],
+  "present": [
+    "Motivation - Qu’est-ce qui serait stimulant dans l’atteinte de cet objectif ? Quelles émotions et quelles sensations ressentez-vous, dans votre corps, lorsque vous êtes motivé ?",
+    "Qualité - De quelles qualités pourriez-vous faire preuve pour atteindre cet objectif ?",
+    "Enjeu - Au fond de vous, que voudriez-vous d’autre à travers l’atteinte de cet objectif ?",
+    "Action - Quelles actions pourriez-vous réaliser ?",
+    "Moyen - Quels moyens techniques, humains mobiliseriez-vous ?",
+    "Indicateur - Quels sont les signaux permettant de savoir que l’objectif est atteint ? Quelles émotions et quelles sensations ressentiriez-vous ?",
+    "Obstacle - Quel serait le principal obstacle ? Quelles émotions et quelles sensations ressentiriez-vous immédiatement ?",
+    "Danger - Face à cet obstacle, quel danger percevriez-vous ? Quelles émotions et quelles sensations ressentiriez-vous face à ce danger ? ",
+    "Réaction - Que feriez-vous pour surmonter cet obstacle ? Quelles émotions et quelles sensations avez-vous ressenties après votre réaction ?"
+  ],
+  "future": [
+    "Motivation - Qu’est-ce qui est stimulant dans l’atteinte de cet objectif ? Quelles émotions et quelles sensations ressentez-vous, dans votre corps, lorsque vous êtes motivé ?",
+    "Qualité - De quelles qualités allez-vous faire preuve pour atteindre cet objectif ?",
+    "Enjeu - Au fond de vous, que voulez-vous d’autre à travers l’atteinte de cet objectif ?",
+    "Action - Quelles actions pouvez-vous très bien réaliser pour atteindre cet objectif ?",
+    "Moyen - Quels moyens techniques, humains pouvez-vous mobiliser pour atteindre cet objectif ?",
+    "Indicateur - Quels sont les signaux vous permettant de savoir que l’objectif sera atteint ? Quelles émotions et quelles sensations allez-vous ressentir ? ",
+    "Obstacle - Quel est le principal obstacle ? Quelles émotions et quelles sensations ressentez-vous immédiatement ?",
+    "Danger - Face à cet obstacle, quel danger percevez-vous ? Quelles émotions et quelles sensations ressentez-vous face à ce danger ? ",
+    "Réaction - Que ferez-vous pour surmonter cet obstacle ? Quelles émotions et quelles sensations allez-vous ressentir après votre réaction ?"
+  ]
 }
