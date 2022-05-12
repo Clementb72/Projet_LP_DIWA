@@ -10,7 +10,7 @@ import Ressources from '../components/Ressources.jsx';
 // Images
 import fuse from '../../public/Assets/images/fuse2.svg';
 import rocket from '../../public/Assets/images/chevron-droit.png';
-import but from '../../public/Assets/images/but.png';
+import but from '../../public/Assets/images/Game_Fusee.svg';
 import imgRessources from '../../public/Assets/images/Game_Ressources.svg';
 import imgBesoins from '../../public/Assets/images/Game_Besoin.svg';
 import imgAffect from '../../public/Assets/images/Game_Affect.svg';
@@ -33,6 +33,23 @@ function Form() {
     const [mode, setMode] = useState(typePartie.temps);
 
     const [answer, setAnswer] = useState(partieManager.initPartie());
+
+    const answerObjectif = (mode) => {
+        switch (mode) {
+            case "present": {
+                return "Quel est votre objectif ?";
+            }
+            case "future": {
+                return "Quel sera votre objectif ?";
+            }
+            case "past": {
+                return "Quel était votre objectif ?";
+            }
+            default: {
+                return "Quel est votre objectif ?";
+            }
+        }
+    }
 
     const [nbQuestion, setNbQuestion] = useState(0);
 
@@ -79,7 +96,7 @@ function Form() {
             setNbQuestion(nbQuestion + 1)
         }else{
             partieManager.savePartie(partieManager.buildPartie(typePartie, answer, userManager.user))
-            navigate("/debriefing")
+            navigate("/fin")
         }
     }
 
@@ -112,21 +129,21 @@ function Form() {
                 <div className="bar bg-white-transparent border-radius-25">
                     <StepBar current={nbQuestion} />
                 </div>
-                <div onClick={nextPage} className={`container-arrow ${questions[mode].length === nbQuestion + 1 ? 'disabled' : ''}`}>
-                    <p>Question suivante</p>
+                <div onClick={nextPage} className={`container-arrow`}>
+                    {questions[mode].length === nbQuestion + 1 ? <p>Debriefing</p> : <p>Question suivante</p>}
                     <img className="arrow-right" src={rocket} alt="rocket"></img>
                 </div>
             </div>
             <div className="bg-white-transparent border-radius-25 container-2">
                 <div className="container-question bg-white-transparent">
-                    <p className="question">{nbQuestion + 1 + ' - ' + questions[mode][nbQuestion]}</p>
+                    <p className="question">{questions[mode][nbQuestion]}</p>
                     <img onClick={() => setShowObjectif(true)} src={but} alt="objectif" />
                     <Modal className="modal-objectif" size="md" centered show={showObjectif} onHide={() => setShowObjectif(false)}>
                         <Modal.Header closeButton>
                             <Modal.Title>Objectif</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            <label htmlFor="objectif">Quel est votre objectif ?</label>
+                            <label htmlFor="objectif">{answerObjectif()}</label>
                             <input value={objectif} onChange={(e) => setObjectif(e.target.value)} type="text" name="objectif" />
                         </Modal.Body>
                         <Modal.Footer>
@@ -192,7 +209,7 @@ function Form() {
                             </div>
                         </div>
                         <div className="satisfaction">
-                            <p>Satisfaction</p>
+                            <p>Intensité</p>
                             <Radio.Group value={answer[nbQuestion].satisfaction} onChange={(e) => changeSatisfaction(e.target.value)} buttonStyle="solid" className="radio-group">
                                 <Radio.Button value="---">---</Radio.Button>
                                 <Radio.Button value="--">--</Radio.Button>

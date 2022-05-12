@@ -50,12 +50,10 @@ function LoginForm() {
 
                     <div>
                         <h2>Connexion</h2>
-                        <input type="text" name="username" placeholder="Login" value={formValue.username} onChange={handleChange} />
+                        <input type="text" name="username" placeholder="Mail" value={formValue.username} onChange={handleChange} />
                         <input type="password" name="password" placeholder="Mot de passe" value={formValue.password} onChange={handleChange} />
                     </div>
-                    <nav>
                         <button type="submit" className="btn btn">Connexion</button>
-                    </nav>
                 </form>
             </div>
         </>

@@ -41,6 +41,11 @@ class Partie
      */
     private $user;
 
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $debriefing = [];
+
     public function __construct()
     {
     }
@@ -94,6 +99,18 @@ class Partie
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getDebriefing(): ?array
+    {
+        return $this->debriefing;
+    }
+
+    public function setDebriefing(array $debriefing): self
+    {
+        $this->debriefing = $debriefing;
 
         return $this;
     }

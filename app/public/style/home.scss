@@ -19,6 +19,7 @@ body {
   top: 50%;
   right: 40px;
   transform: translateY(-50%);
+  cursor: pointer;
 }
 
 p {
@@ -75,7 +76,6 @@ div.col {
 }
 
 .homeUpper {
-  height: 110vh;
   position: relative;
 }
 
@@ -112,11 +112,7 @@ div.col {
 }
 
 .btnCont {
-  position: absolute;
-  bottom: 25%;
-  left: 50%;
-  transform: translateX(-50%);
-
+  margin-top: -50px;
   h3 {
     color: white;
   }
@@ -126,16 +122,13 @@ div.col {
   margin-top: 50px;
   text-decoration: none;
   color: white;
-  position: absolute;
-  bottom: 20%;
-  left: 50%;
-  transform: translateX(-50%);
 }
 
 .homeLower {
   background-color: #fff;
   width: 100%;
   position: relative;
+  margin-top: 100px;
 
   &:before {
     content: " ";
@@ -157,13 +150,29 @@ div.col {
   padding: 50px 0;
 }
 
+.homeCardPres {
+  background-color: #EDEBEB;
+  padding: 15px;
+  width: 50%;
+  border-radius: 25px;
+  p {
+    color: #595959;
+    b {
+      font-size: 20px;
+    }
+  }
+}
+
 .homeCards {
   background-color: #EDEBEB;
-  width: fit-content;
   padding: 15px;
   width: 20%;
   border-radius: 25px;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 550px;
 
   img {
     width: 100%;
