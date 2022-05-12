@@ -32,13 +32,15 @@ function FormEnd() {
 
     return (
         <>
+            <form onSubmit={submit} className="formEnd">
             <h1>Debriefing</h1>
             <p>Citer 3 mots ( sentiments, émotions ) qui ont marqué votre partie</p>
-            <form onSubmit={submit}>
+            <div>
                 <input type="text" name="choix1" value={state.choix1} onChange={handleChange} />
                 <input type="text" name="choix2" value={state.choix2} onChange={handleChange} />
                 <input type="text" name="choix3" value={state.choix3} onChange={handleChange} />
-                <input type="submit" value="Valider" />
+                </div>
+                <input type="submit" value="Valider" className="btn"/>
             </form>
         </>
     );

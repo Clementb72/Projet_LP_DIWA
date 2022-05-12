@@ -159,7 +159,7 @@ function Registration() {
         />
         <label  className="CGV">
           <input type="checkbox" name="check" onChange={handleChange} />
-          J'ai lu et j'accepte les CGV
+          J'ai lu et j'accepte les CGU
         </label>
         </div>
         <input type="submit" value="Créer un compte" className="btn"/>
