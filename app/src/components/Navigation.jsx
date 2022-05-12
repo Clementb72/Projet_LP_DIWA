@@ -13,6 +13,7 @@ function Navigation(){
             <div className="subMenu">
                 <p className="closeMenu" onClick={() => setDisplayNav(!displayNav)}>&#9587;</p>
                  <img src={logo} alt="WYS Logo" className="subLogo"></img>
+                <a href="/profil">Mon profil</a>
                 <a href="https://winyourstar.com/">winyourstar.com</a>
             </div> 
             : null}
