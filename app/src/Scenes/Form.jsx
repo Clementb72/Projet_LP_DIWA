@@ -39,11 +39,11 @@ function Form() {
             case "present": {
                 return "Quel est votre objectif ?";
             }
-            case "futur": {
-                return "Quel va être votre objectif ?";
+            case "future": {
+                return "Quel sera votre objectif ?";
             }
-            case "passe": {
-                return "Quel a été votre objectif ?";
+            case "past": {
+                return "Quel était votre objectif ?";
             }
             default: {
                 return "Quel est votre objectif ?";
@@ -53,22 +53,22 @@ function Form() {
 
     const [nbQuestion, setNbQuestion] = useState(0);
 
-    // useEffect(() => {
-    //     // Sécurité si pas connecté
-    //     if (null === userManager.user)
-    //         navigate("/login");
-    //     if (null != location.state) {
-    //         let id = location.state.idTypePartie || 0;
-    //         let typePartie = typePartieManager.getTypePartieById(id);
-    //         let temps = typePartie.temps;
-    //         setIdTypePartie(id);
-    //         setTypePartie(typePartie);
-    //         setMode(temps);
-    //         if (id === 0)
-    //             navigate("/game"); 
-    //     } else // Sécurité si user passe par l'url pour accéder à la page sans avoir séléctionné le mode de jeu
-    //         navigate("/game");            
-    // }, []);
+    useEffect(() => {
+        // Sécurité si pas connecté
+        if (null === userManager.user)
+            navigate("/login");
+        if (null != location.state) {
+            let id = location.state.idTypePartie || 0;
+            let typePartie = typePartieManager.getTypePartieById(id);
+            let temps = typePartie.temps;
+            setIdTypePartie(id);
+            setTypePartie(typePartie);
+            setMode(temps);
+            if (id === 0)
+                navigate("/game"); 
+        } else // Sécurité si user passe par l'url pour accéder à la page sans avoir séléctionné le mode de jeu
+            navigate("/game");            
+    }, []);
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
