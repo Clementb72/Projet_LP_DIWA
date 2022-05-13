@@ -1,73 +1,80 @@
-# Structure de projet Symfony - React sur Docker
+<h1 align="center">
+    Documentation du Projet WYS APP
+</h1>
+<p align="center">
+    Ce projet annuel de la licence professionnel Développeur et Intégrateur de Web Applications de l'IUT de LAVAL a pour objectif la dématérialisation d'un jeu physique (Serious Game) en version numérique (Web App / POC - Proof Of Concept)<br><br>
+    <img alt="React" src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
+    <img alt="Webpack" src="https://img.shields.io/badge/Webpack-8DD6F9?style=for-the-badge&logo=Webpack&logoColor=white">
+    <img alt="JS" src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E">
+    <img alt="HTML" src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
+    <img alt="Sass" src="https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white">
+    <img alt="React Bootstrap" src="https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white">
+    <img alt="Babel" src="https://img.shields.io/badge/Babel-F9DC3E?style=for-the-badge&logo=babel&logoColor=white">
+    <img alt="Symfony" src="https://img.shields.io/badge/Symfony-000000?style=for-the-badge&logo=Symfony&logoColor=white">
+    <img alt="Node" src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white">
+    <img alt="MariaDB" src="https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white">
+    <img alt="MySQL" src="https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white">
+    <img alt="Nginx" src="https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white">
+    <img alt="Alpine" src="https://img.shields.io/badge/Alpine_Linux-0D597F?style=for-the-badge&logo=alpine-linux&logoColor=white">
+    <img alt="Docker" src="https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white">
+    <img alt="Bash" src="https://img.shields.io/badge/Shell_Script-121011?style=for-the-badge&logo=gnu-bash&logoColor=white">
+</p>
 
----
+## Prérequis
+- Docker
+- Docker Compose
 
-*Auteur : Rémi Venant, <[remi.venant@univ-lemans.fr](mailto://remi.venant@univ-lemans.fr)>*  
-*Version : 1.0*
+## Installation
+Script pour démarrer la pile docker
+```sh
+./scripts/noProxy.sh
+```
 
----
+## Features
+- Déploiement d'une base de données MariaDB (Version 10.7)
+- Déploiement d'un serveur Node JS (Version 17)
+- Déploiement d'un serveur Nginx (Version 1.21.6-alpine)
+- Déploiement d'un container Symfony (Image Docker : fguntz/symfony:2.0)
+- Déploiement d'une interface PhpMyAdmin (Version 5.1)
+- Déploiement d'un catcheur de mail (Image Docker : maildev/maildev)
 
-Ce projet dépot une structure de base pour des projets de développement d'application web reponsant sur Symfony coté *backend* et React/MobX coté *frontend*, et reposant sur des bases de données SQL et NoSQL orientées Document.
+## Features API
+**GET** :
+```sh
+/api/parties # Retourne toutes les parties stockées en base données
+```
+```sh
+/api/typesPartie # Retourne tous les types partie stockés en base données
+```
 
-Ce dépôt propose :
-- la structuration de l'arborescence de fichiers ;
-- des piles de conteneurs Docker pour fournir les environnements de développement et de pré-production/production ;
-- la structure et l'ensemble des fichiers de configuration nécessaires à l'exploitation des piles Docker
-- une documentation
-- un outil (script shell) pour simplifier la manipulation des piles Docker
-- une application de démonstration exploitant l'ensemble des composants.
+**POST** :
+```sh
+/api/login # Route permettant de se connecter à un compte utilisateur
+```
+```sh
+/api/partie # Route permettant de sauvegarder une partie
+```
+```sh
+/api/updateProfil # Route permettant de mettre à jour les données d'un compte utilisateur
+```
+```sh
+/api/register # Route permettant de créer un compte utilisateur
+```
 
-2 branches sont proposées dans ce dépôt :
-- **main** : de base cette branche est vide, mais à terme elle contiendra le code de l'incrément de votre WebApp à la fin de chaque sprint testable par le commanditaire.
-- **demo** : contient une Web application de démonstration.
-
-## Documentation
-
-La documentation est consultable ici : [doc/documentation_fr.pdf](./doc/documentation_fr.pdf)
-
-## Tester rapidement l'application de démo
-
-- vérifier que Docker soit bien installé et lancé sur votre machine
-- vérifier que vous ayez les droits de manipuler docker (ex.: `docker ps`)
-- vérifier qu'aucun programme sur votre machine ne soit déjà à l'écoute des ports 8080 et 3000
-- clonez le dépôt (`git clone ...`)
-- positionnez-vous dans le dossier du dépôt (`cd ...`)
-- rapatriez la branche "démo" du dépôt (`git checkout origin/demo`)
-- si vous êtes sur un poste de l'IUT de Laval, décommentez les lignes 80 et 81 du fichier ./docker/docker-compose-prod-lemansproxy.yml
-    ports:
-      - 80:80
-- sinon décommentez les lignes 75 et 76 du fichier ./docker/docker-compose-prod.yml
-    ports:
-      - 80:80
-- positionnez-vous dans le dossier script : `cd ./script`
-- lancez l'application de démo en mode production (`./dcTool prod up` ou `./dcTool prod -lmp up` depuis un poste de l'IUT de Laval)
-- attendez que l'ensemble des conteneurs soient correctement lancés. Normalement, lorsque l'application sera prête, la commande `./dcTool prod ps` devrez vous indiquer que les conteneurs http, mongodb, mysqldb, symfony sont lancés (*Up*) et que le conteneur npm a terminé avec un code de sortie 0 (*Exit 0*). Le premier lancement est généralement long (rapatriement des images, installation des dépendances des application *backend* et *frontend*, build de l'application *frontend*)
-- recommentez les lignes qui ont été décommentées
-- une fois l'ensemble des conteneurs lancés, vous devriez pouvoir tester l'application depuis votre navigateur à l'adresse [http://localhost:80](http://localhost:80)
-- arrêtez la pile (`./dcTool prod down -v` ou `./dcTool prod -lmp down -v` depuis un poste de l'IUT de Laval)
-
-## Ajout de scripts bash
-
-Vous pouvez ajouter vos scripts bash personnels dans le dossier ./script pour vos besoins de développement propre. Par contre il faut bien penser à attribuer les droits corrects pour l'autorisation de l'exécution du script avec la commande : `chmod u+x ./script/votre_script_perso.sh`. 
-
-
-## Mise en place du mode XDEBUG pour l'environnement DEV
-
-Par défaut, le mode XDEBUG de la pile Docker en environnement de DEV est désactivée. 
-
-Pour activer le mode XDEBUG, voici les manipulations à faire : 
-
-1. Si cela n'a pas déjà été fait, démarrez la pile Docker, attendez que la pile soit complètement démarrée
-2. Commentez la ligne 6 du fichier docker/symfony/docker-php-ext-xdebug.ini
-3. Décommentez la ligne 5 du fichier docker/symfony/docker-php-ext-xdebug.ini
-4. Enregistrez le fichier
-5. Connectez vous au conteneur symfony avec la commande : $ ./connect-symfony-container-dev.sh
-6. Dans le conteneur symfony exécutez la commande suivante : # kill -USR2 1
-7. Sortez du conteneur symfony : # exit
-8. Exécutez la configuration "Listen for Xdebug"
-9. Mettez un point d'arrêt au nivea u du code que vous voulez observer
-10. Côté client web, appelez la page qui correspond au code que vous voulez observer
-11. VSCode s'arrêtera au niveau de la ligne avec un point d'arrêt, à partir de là vous pouvez debogguer avec les outils de VSCode. 
-
-Si vous voulez désactiver le mode XDEBUG côté serveur, il faut procéder de la même manière sauf qu'il faut décommnter la ligne 6 et commenter la ligne 5 du fichier docker/symfony/docker-php-ext-xdebug.ini. 
-
+## Accès
+Route d'accès de l'API
+```sh
+127.0.0.1:8080
+```
+Route d'accès de l'application
+```sh
+127.0.0.1:3000
+```
+Route d'accès du catcheur de mail
+```sh
+127.0.0.1:1080
+```
+Route d'accès à l'interface phpmyadmin
+```sh
+127.0.0.1:8889
+```
